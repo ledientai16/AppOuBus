@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.dht.appoubus.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.LoginController">
     <stylesheets>
         <URL value="@/com/dht/appoubus/login.css" />
     </stylesheets>
    <children>
-      <AnchorPane layoutX="47.0" layoutY="50.0" prefHeight="302.0" prefWidth="510.0" style="-fx-background-color: #99CCCC;">
+      <AnchorPane layoutX="45.0" layoutY="49.0" prefHeight="302.0" prefWidth="510.0" style="-fx-background-color: #99CCCC;">
          <children>
             <Label alignment="CENTER" layoutX="143.0" layoutY="29.0" prefHeight="35.0" prefWidth="207.0" text="Đăng Nhập" textFill="#3b35b2">
                <font>
