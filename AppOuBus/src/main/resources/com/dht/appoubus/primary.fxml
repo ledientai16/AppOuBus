@@ -6,14 +6,25 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1035.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.PrimaryController">
    <children>
-      <AnchorPane layoutY="-5.0" prefHeight="554.0" prefWidth="168.0" style="-fx-background-color: #F4A460;">
+      <AnchorPane fx:id="rootPane" layoutX="174.0" layoutY="38.0" prefHeight="562.0" prefWidth="862.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="38.0" />
+      <HBox alignment="CENTER_RIGHT" layoutX="-1.0" opacity="0.67" prefHeight="38.0" prefWidth="1035.0" style="-fx-background-color: #E0E0E0;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.6666666666667425" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="61.0" prefWidth="163.0">
+            <ImageView fitHeight="30.0" fitWidth="43.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/power.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <AnchorPane layoutY="38.0" prefHeight="562.0" prefWidth="168.0" style="-fx-background-color: #F4A460;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="38.0">
+         <children>
+            <Pane layoutY="6.0" prefHeight="61.0" prefWidth="163.0">
                <children>
                   <Label layoutX="8.0" layoutY="15.0" prefHeight="32.0" prefWidth="155.0" text="APP OU BUS">
                      <font>
@@ -22,10 +33,10 @@
                   </Label>
                </children>
             </Pane>
-            <MenuButton layoutY="77.0" minWidth="56.0" mnemonicParsing="false" popupSide="TOP" prefHeight="61.0" prefWidth="163.0" text="Quản Lý">
+            <MenuButton layoutY="132.0" minWidth="56.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="163.0" text="Quản Lý">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Thêm Chuyến" />
-                  <MenuItem mnemonicParsing="false" text="Kiểm tra chuyến đi" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadThemChuyenUI" text="Thêm Chuyến" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadsecond" text="Kiểm tra chuyến đi" />
                </items>
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
@@ -38,7 +49,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </MenuButton>
-            <MenuButton layoutY="181.0" minWidth="56.0" mnemonicParsing="false" popupSide="TOP" prefHeight="61.0" prefWidth="163.0" text="Bán Vé">
+            <MenuButton layoutY="287.0" minWidth="56.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="163.0" text="Bán Vé">
                <items>
                   <MenuItem mnemonicParsing="false" text="Thêm Chuyến" />
                   <MenuItem mnemonicParsing="false" text="Kiểm tra chuyến đi" />
