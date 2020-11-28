@@ -17,7 +17,6 @@ public class VeXe extends ChuyenXe {
     }
 
     public VeXe(int VeXe, int chuyenXeID, String name, int toTram, int fromTram, int XeID) {
-        super(chuyenXeID, name, toTram, fromTram, XeID);
         this.VeXe = VeXe;
     }
     
