@@ -44,6 +44,7 @@ public class PrimaryController {
     public void loadUI(String UI) throws IOException{
        
         AnchorPane pane = FXMLLoader.load(getClass().getResource(UI));
+        
         rootPane.getChildren().setAll(pane);
         
    }
@@ -53,10 +54,10 @@ public class PrimaryController {
      * @param event
      */
     @FXML
-    public void loadThemChuyenUI(ActionEvent e){
+    public void loadQuanLyChuyenXeUI(ActionEvent e){
         
         try {
-            loadUI("themchuyen.fxml");
+            loadUI("quanlychuyenxe.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }

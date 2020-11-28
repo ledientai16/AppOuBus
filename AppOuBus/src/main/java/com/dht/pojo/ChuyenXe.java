@@ -5,25 +5,34 @@
  */
 package com.dht.pojo;
 
+import java.sql.Time;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author Admin
  */
 public class ChuyenXe {
     private int chuyenXeID;
-    private String name;
+    private String moTa;
     private int toTram;
     private int fromTram;
-    private int XeID;
+    private int xeID;
+    private Time timeStart;
+    private Time timeEnd;
+    private GregorianCalendar date;
 
-    public ChuyenXe(int chuyenXeID, String name, int toTram, int fromTram, int XeID) {
+    public ChuyenXe(int chuyenXeID, int toTram, int fromTram, int XeID) {
         this.chuyenXeID = chuyenXeID;
-        this.name = name;
+        
         this.toTram = toTram;
         this.fromTram = fromTram;
-        this.XeID = XeID;
+        
     }
-
+    public ChuyenXe(int chuyenXeID, String moTa){
+     this.chuyenXeID = chuyenXeID;
+     this.moTa = moTa;
+    }
     public ChuyenXe() {
     }
 
@@ -44,16 +53,7 @@ public class ChuyenXe {
     /**
      * @return the name
      */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+  
 
     /**
      * @return the toTram
@@ -87,14 +87,18 @@ public class ChuyenXe {
      * @return the XeID
      */
     public int getXeID() {
-        return XeID;
+        return xeID;
     }
 
     /**
      * @param XeID the XeID to set
      */
     public void setXeID(int XeID) {
-        this.XeID = XeID;
+        this.xeID = xeID;
+    }
+
+    public String getMoTa() {
+        return moTa;
     }
     
 

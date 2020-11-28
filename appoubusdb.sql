@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: localhost    Database: appbanvexedb
+-- Host: localhost    Database: appoubusdb
 -- ------------------------------------------------------
--- Server version	5.5.16
+-- Server version	8.0.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,20 +23,19 @@ DROP TABLE IF EXISTS `chuyenxe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chuyenxe` (
-  `ChuyenXeID` int(11) NOT NULL AUTO_INCREMENT,
-  `FromTram` int(11) DEFAULT NULL,
-  `Name` varchar(45) DEFAULT NULL,
-  `ToTram` int(11) DEFAULT NULL,
+  `ChuyenXeID` int NOT NULL AUTO_INCREMENT,
+  `FromTram` int DEFAULT NULL,
+  `ToTram` int DEFAULT NULL,
   `BeginTime` date DEFAULT NULL,
-  `XeID` int(11) DEFAULT NULL,
+  `XeID` int DEFAULT NULL,
+  `MoTa` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`ChuyenXeID`),
   KEY `fk_chuyenxe_toid_tram_idx` (`ToTram`,`FromTram`),
   KEY `fk_chuyenxe_fromid_tram_idx` (`FromTram`,`ToTram`),
   KEY `fk_chuyenxe_id_xe_idx` (`XeID`),
-  CONSTRAINT `fk_chuyenxe_fromid_tram` FOREIGN KEY (`FromTram`) REFERENCES `tram` (`TramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_chuyenxe_id_xe` FOREIGN KEY (`XeID`) REFERENCES `xe` (`XeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_chuyenxe_toid_tram` FOREIGN KEY (`ToTram`) REFERENCES `tram` (`TramID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_chuyenxe_id_xe` FOREIGN KEY (`XeID`) REFERENCES `xe` (`XeID`),
+  CONSTRAINT `fk_chuyenxe_toid_tram` FOREIGN KEY (`ToTram`) REFERENCES `tram` (`TramID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +44,7 @@ CREATE TABLE `chuyenxe` (
 
 LOCK TABLES `chuyenxe` WRITE;
 /*!40000 ALTER TABLE `chuyenxe` DISABLE KEYS */;
-INSERT INTO `chuyenxe` VALUES (1,1,'vt',2,NULL,NULL),(2,2,'2',1,NULL,NULL);
+INSERT INTO `chuyenxe` VALUES (1,1,2,NULL,NULL,'xe di dau do'),(2,2,1,NULL,NULL,'xe di day dio'),(3,NULL,NULL,NULL,NULL,'2'),(4,NULL,NULL,NULL,NULL,'ád');
 /*!40000 ALTER TABLE `chuyenxe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,8 +56,8 @@ DROP TABLE IF EXISTS `tram`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tram` (
-  `TramID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `TramID` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `DiaChi` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`TramID`),
   UNIQUE KEY `TramID_UNIQUE` (`TramID`)
@@ -83,13 +82,13 @@ DROP TABLE IF EXISTS `vexe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vexe` (
-  `idVeXe` int(11) NOT NULL,
-  `ChuyenXeID` int(11) DEFAULT NULL,
+  `idVeXe` int NOT NULL,
+  `ChuyenXeID` int DEFAULT NULL,
   `vexecol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idVeXe`),
   UNIQUE KEY `idVeXe_UNIQUE` (`idVeXe`),
   KEY `fk_vexe_id_chuyenxe_idx` (`ChuyenXeID`),
-  CONSTRAINT `fk_vexe_id_chuyenxe` FOREIGN KEY (`ChuyenXeID`) REFERENCES `chuyenxe` (`ChuyenXeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_vexe_id_chuyenxe` FOREIGN KEY (`ChuyenXeID`) REFERENCES `chuyenxe` (`ChuyenXeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -110,7 +109,7 @@ DROP TABLE IF EXISTS `xe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `xe` (
-  `XeID` int(11) NOT NULL,
+  `XeID` int NOT NULL,
   `BanSoXe` varchar(45) NOT NULL,
   `SoGhe` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`XeID`)
@@ -135,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-14 22:20:32
+-- Dump completed on 2020-11-29  2:25:14

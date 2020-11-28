@@ -8,4 +8,6 @@ module com.dht.appoubus {
     opens com.dht.appoubus to javafx.fxml;
     exports com.dht.appoubus;
     requires javafx.graphicsEmpty;
+    exports com.dht.pojo;
+    exports com.dht.services;
 }

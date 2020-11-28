@@ -23,7 +23,7 @@ public class Utils {
                     
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/appbanvexedb",
+                    "jdbc:mysql://localhost:3306/appoubusdb",
                     "root",
                     "12345678");
             
