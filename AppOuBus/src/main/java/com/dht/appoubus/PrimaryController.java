@@ -16,13 +16,13 @@ import javafx.stage.Stage;
 
 public class PrimaryController {
     @FXML
-    public AnchorPane rootPane;
+    private AnchorPane rootPane;
    
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
        
     }   
-
+    
     /**
      *
      *  Event power off
@@ -57,15 +57,15 @@ public class PrimaryController {
     public void loadQuanLyChuyenXeUI(ActionEvent e){
         
         try {
-            loadUI("quanlychuyenxe.fxml");
+            loadUI("quanLyChuyenXe.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void loadsecond(ActionEvent e){
+    public void loadQuanLyTramUI(ActionEvent e){
         
         try {
-            loadUI("secondary.fxml");
+            loadUI("quanLyTram.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
