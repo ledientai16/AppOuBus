@@ -19,7 +19,11 @@ public class Tram {
         this.name = name;
         this.diaChi = diaChi;
     }
-
+    public Tram(String name, String diaChi) {
+        
+        this.name = name;
+        this.diaChi = diaChi;
+    }
     public Tram() {
     }
 

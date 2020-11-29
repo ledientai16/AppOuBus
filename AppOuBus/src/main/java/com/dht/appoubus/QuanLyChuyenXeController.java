@@ -20,7 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.fxml.FXML;
 /**
  * FXML Controller class
  *
@@ -28,7 +28,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class QuanLyChuyenXeController implements Initializable {
 
-    public TableView <ChuyenXe> tableChuyenXe;
+    @FXML TableView <ChuyenXe> tableChuyenXe;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

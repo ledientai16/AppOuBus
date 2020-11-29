@@ -61,7 +61,7 @@ CREATE TABLE `tram` (
   `DiaChi` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`TramID`),
   UNIQUE KEY `TramID_UNIQUE` (`TramID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `tram` (
 
 LOCK TABLES `tram` WRITE;
 /*!40000 ALTER TABLE `tram` DISABLE KEYS */;
-INSERT INTO `tram` VALUES (1,'Tp.Hồ Chí Minh',NULL),(2,'Vũng Tàu',NULL);
+INSERT INTO `tram` VALUES (1,'Tp.Hồ Chí Minh',NULL),(2,'Vũng Tàu',NULL),(3,'2','2'),(4,'2','2'),(5,'3','3'),(6,'32','32'),(7,'toi la meo','toi la meo'),(8,'con mo cung','con mo cung'),(9,'con mo cung','con mo cung'),(10,'32','32'),(11,'32','32'),(12,'32','32'),(13,'2','3'),(14,'lon beo','ap tan hoi'),(15,'lon beo','ap tan hoi'),(16,'lon beo','ap tan hoi'),(17,'lon beo','ap tan hoi'),(18,'lon beo','ap tan hoi'),(19,'lon beo','ap tan hoi'),(20,'lon beo','ap tan hoi'),(21,'lon beo','ap tan hoi'),(22,'lon beo','ap tan hoi'),(23,'lon beo','ap tan hoi'),(24,'2222222','33'),(25,'22','222222');
 /*!40000 ALTER TABLE `tram` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-29  2:25:14
+-- Dump completed on 2020-11-29 22:46:00
