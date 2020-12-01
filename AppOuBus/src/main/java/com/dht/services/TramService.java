@@ -56,4 +56,12 @@ public class TramService {
         }
         return false;
     }
+    public static boolean deleteTram(String tramID) throws SQLException{
+        Connection conn = Utils.getConn();
+        String sql = "DELETE FROM tram where TramID = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        stm.setString(1, tramID);
+        int kq = stm.executeUpdate();
+        return kq > 0;
+    }
 }

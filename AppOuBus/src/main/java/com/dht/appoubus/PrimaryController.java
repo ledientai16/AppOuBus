@@ -15,9 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class PrimaryController {
-    @FXML
-    private AnchorPane rootPane;
-   
+    
+    @FXML AnchorPane rootPane;
+    
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
        
@@ -36,7 +36,7 @@ public class PrimaryController {
 
     /**
      *
-     *  event Change UI
+     * event Change UI
      * change UI from primary UI
      */
     
@@ -44,7 +44,8 @@ public class PrimaryController {
     public void loadUI(String UI) throws IOException{
        
         AnchorPane pane = FXMLLoader.load(getClass().getResource(UI));
-        
+        pane.setPrefHeight(rootPane.getPrefHeight());
+        pane.setPrefWidth(rootPane.getPrefWidth());
         rootPane.getChildren().setAll(pane);
         
    }
@@ -66,6 +67,14 @@ public class PrimaryController {
         
         try {
             loadUI("quanLyTram.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void loadLoginUI(){
+        
+        try {
+            loadUI("login.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
