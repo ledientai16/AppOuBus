@@ -12,11 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class PrimaryController {
     
-    @FXML AnchorPane rootPane;
+    @FXML BorderPane rootPane;
     
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -44,9 +45,8 @@ public class PrimaryController {
     public void loadUI(String UI) throws IOException{
        
         AnchorPane pane = FXMLLoader.load(getClass().getResource(UI));
-        pane.setPrefHeight(rootPane.getPrefHeight());
-        pane.setPrefWidth(rootPane.getPrefWidth());
-        rootPane.getChildren().setAll(pane);
+        rootPane.setCenter(pane);
+ 
         
    }
         
@@ -58,7 +58,7 @@ public class PrimaryController {
     public void loadQuanLyChuyenXeUI(ActionEvent e){
         
         try {
-            loadUI("quanLyChuyenXe.fxml");
+            loadUI("quanlychuyenxe.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,7 +66,14 @@ public class PrimaryController {
     public void loadQuanLyTramUI(ActionEvent e){
         
         try {
-            loadUI("quanLyTram.fxml");
+            loadUI("quanlytram.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void loadQuanLyXeUI(ActionEvent e){
+        try {
+            loadUI("quanlyxe.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }

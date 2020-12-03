@@ -73,6 +73,7 @@ public class QuanLyTramController implements Initializable {
                 // Event xóa Traamj
                     Button b = (Button) evt.getSource();
                     TableCell c = (TableCell) b.getParent();
+                    
                     Tram t = (Tram) c.getTableRow().getItem();
                     int temp = t.getTramID();
                     String id = String.valueOf(temp);
@@ -92,9 +93,12 @@ public class QuanLyTramController implements Initializable {
                         }
                     alert.show();
                 });
-                cell.setGraphic(btn);
+                   
+                
                 });
-            cell.setGraphic(btn);
+        
+           
+                cell.setGraphic(btn);
             return cell;
         });
             

@@ -42,7 +42,7 @@ public class TramService {
         Connection conn = Utils.getConn();
         try {
             conn.setAutoCommit(false);
-            String sql = "INSERT INTO tram(Name, DiaChi)" + "Value(?, ?)";
+            String sql = "INSERT INTO tram(Name, DiaChi)" + "Values(?, ?)";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1,tram.getName());
             stm.setString(2,tram.getDiaChi());
@@ -50,18 +50,28 @@ public class TramService {
                 
             
             conn.commit();
-            return true;
+            return executeUpdate > 0;
         } catch (SQLException ex) {
             Logger.getLogger(TramService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    public static boolean deleteTram(String tramID) throws SQLException{
+    public static boolean deleteTram(String tramID){
         Connection conn = Utils.getConn();
         String sql = "DELETE FROM tram where TramID = ?";
-        PreparedStatement stm = conn.prepareStatement(sql);
-        stm.setString(1, tramID);
-        int kq = stm.executeUpdate();
-        return kq > 0;
+        
+        try {
+            conn.setAutoCommit(false);
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, tramID);
+            int kq = stm.executeUpdate();
+            stm.executeUpdate();
+            conn.commit();
+            return kq >0;
+        } catch (SQLException ex) {
+            Logger.getLogger(TramService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      return false;
     }
 }

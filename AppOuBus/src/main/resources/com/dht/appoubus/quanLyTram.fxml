@@ -12,7 +12,7 @@
 <AnchorPane id="AnchorPane" prefHeight="614.0" prefWidth="771.0" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyTramController">
    <children>
       <TableView fx:id="tableTram" layoutX="321.0" layoutY="72.0" prefHeight="528.0" prefWidth="445.0" stylesheets="@../Style/style.css" />
-      <AnchorPane layoutY="84.0" prefHeight="313.0" prefWidth="317.0">
+      <AnchorPane layoutX="3.0" layoutY="72.0" prefHeight="317.0" prefWidth="317.0" style="-fx-background-color: #778899;">
          <children>
             <ImageView fitHeight="150.0" fitWidth="63.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                <image>

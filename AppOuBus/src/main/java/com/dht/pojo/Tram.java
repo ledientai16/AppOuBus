@@ -25,6 +25,7 @@ public class Tram {
         this.diaChi = diaChi;
     }
     public Tram() {
+       
     }
 
     
