@@ -32,9 +32,9 @@ CREATE TABLE `chuyenxe` (
   PRIMARY KEY (`ChuyenXeID`),
   KEY `fk_chuyenxe_toid_tram_idx` (`ToTram`,`FromTram`),
   KEY `fk_chuyenxe_fromid_tram_idx` (`FromTram`,`ToTram`),
-  KEY `fk_chuyenxe_id_xe_idx` (`XeID`),
-  CONSTRAINT `fk_chuyenxe_id_xe` FOREIGN KEY (`XeID`) REFERENCES `xe` (`XeID`),
-  CONSTRAINT `fk_chuyenxe_toid_tram` FOREIGN KEY (`ToTram`) REFERENCES `tram` (`TramID`)
+  KEY `fk_chuyenxe_toid_xe_idx` (`XeID`),
+  CONSTRAINT `fk_chuyenxe_toid_tram` FOREIGN KEY (`ToTram`) REFERENCES `tram` (`TramID`),
+  CONSTRAINT `fk_chuyenxe_toid_xe` FOREIGN KEY (`XeID`) REFERENCES `xe` (`XeID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -44,7 +44,6 @@ CREATE TABLE `chuyenxe` (
 
 LOCK TABLES `chuyenxe` WRITE;
 /*!40000 ALTER TABLE `chuyenxe` DISABLE KEYS */;
-INSERT INTO `chuyenxe` VALUES (1,1,2,NULL,NULL,'xe di dau do'),(2,2,1,NULL,NULL,'xe di day dio'),(3,NULL,NULL,NULL,NULL,'2'),(4,NULL,NULL,NULL,NULL,'ád');
 /*!40000 ALTER TABLE `chuyenxe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,11 +56,11 @@ DROP TABLE IF EXISTS `tram`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tram` (
   `TramID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `DiaChi` varchar(45) DEFAULT NULL,
+  `Name` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `DiaChi` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`TramID`),
   UNIQUE KEY `TramID_UNIQUE` (`TramID`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +69,7 @@ CREATE TABLE `tram` (
 
 LOCK TABLES `tram` WRITE;
 /*!40000 ALTER TABLE `tram` DISABLE KEYS */;
-INSERT INTO `tram` VALUES (1,'Tp.Hồ Chí Minh',NULL),(2,'Vũng Tàu',NULL),(3,'2','2'),(4,'2','2'),(5,'3','3'),(6,'32','32'),(7,'toi la meo','toi la meo'),(8,'con mo cung','con mo cung'),(9,'con mo cung','con mo cung'),(10,'32','32'),(11,'32','32'),(12,'32','32'),(13,'2','3'),(14,'lon beo','ap tan hoi'),(15,'lon beo','ap tan hoi'),(16,'lon beo','ap tan hoi'),(17,'lon beo','ap tan hoi'),(18,'lon beo','ap tan hoi'),(19,'lon beo','ap tan hoi'),(20,'lon beo','ap tan hoi'),(21,'lon beo','ap tan hoi'),(22,'lon beo','ap tan hoi'),(23,'lon beo','ap tan hoi'),(24,'2222222','33'),(25,'22','222222');
+INSERT INTO `tram` VALUES (50,'56','56'),(51,'56','56'),(52,'56','56');
 /*!40000 ALTER TABLE `tram` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,11 +108,13 @@ DROP TABLE IF EXISTS `xe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `xe` (
-  `XeID` int NOT NULL,
-  `BanSoXe` varchar(45) NOT NULL,
-  `SoGhe` varchar(45) DEFAULT NULL,
+  `XeID` int NOT NULL AUTO_INCREMENT,
+  `BienSo` varchar(45) NOT NULL,
+  `SoGhe` int NOT NULL,
+  `LoaiXe` varchar(45) DEFAULT NULL,
+  `NamSX` date DEFAULT NULL,
   PRIMARY KEY (`XeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,6 +123,7 @@ CREATE TABLE `xe` (
 
 LOCK TABLES `xe` WRITE;
 /*!40000 ALTER TABLE `xe` DISABLE KEYS */;
+INSERT INTO `xe` VALUES (6,'3',3,'3','2020-12-15'),(7,'3',3,'3','2020-12-15'),(8,'3',3,'3','2020-12-15'),(9,'3',3,'3','2020-12-15');
 /*!40000 ALTER TABLE `xe` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -134,4 +136,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-29 22:46:00
+-- Dump completed on 2020-12-03 20:36:06
