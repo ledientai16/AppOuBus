@@ -58,7 +58,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="289.0" layoutY="379.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #00BFFF;" text="Clear" textFill="WHITE">
+      <Button layoutX="289.0" layoutY="379.0" mnemonicParsing="false" onMouseClicked="#clearHandler" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #00BFFF;" text="Clear" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>

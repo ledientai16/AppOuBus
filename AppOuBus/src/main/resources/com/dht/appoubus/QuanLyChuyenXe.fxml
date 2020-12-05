@@ -1,36 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="648.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyChuyenXeController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="673.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyChuyenXeController">
    <children>
-      <TableView fx:id="tableChuyenXe" layoutX="383.0" layoutY="13.0" prefHeight="501.0" prefWidth="244.0" />
-      <GridPane layoutY="44.0" prefHeight="471.0" prefWidth="381.0" style="-fx-background-color: black;">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="79.66666666666667" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.66666412353516" minWidth="0.0" prefWidth="301.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="121.33332824707031" minHeight="0.0" prefHeight="47.99998982747396" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="252.0" minHeight="0.0" prefHeight="38.00001017252604" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="345.0" minHeight="0.0" prefHeight="50.66667683919272" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="417.3333333333333" minHeight="10.0" prefHeight="334.6666564941406" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Chuyến đi ID:" />
-            <TextField prefHeight="20.0" prefWidth="301.0" GridPane.columnIndex="1" />
-            <Label prefHeight="17.0" prefWidth="63.0" text="Mô tả" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="63.0" text="Mô tả" GridPane.rowIndex="2" />
-            <ChoiceBox prefHeight="25.0" prefWidth="301.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
+      <TableView fx:id="tableChuyenXe" layoutY="69.0" prefHeight="477.0" prefWidth="673.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-7.0" prefHeight="69.0" prefWidth="684.0" style="-fx-background-color: #606060;" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="47.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

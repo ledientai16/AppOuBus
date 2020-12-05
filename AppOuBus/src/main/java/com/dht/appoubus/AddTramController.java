@@ -36,7 +36,7 @@ public class AddTramController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // listener chi nhap duoc so 10 ky tu
         txtID.textProperty().addListener(new ChangeListener<String>(){
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
@@ -57,7 +57,7 @@ public class AddTramController implements Initializable {
             if(TramService.addTram(tram) == true)
             {
                 
-                alert.setContentText("Đã thêm");
+                alert.setContentText("Đã thêm. Hay refresh lại quản lý trạm");
             }
             else alert.setContentText("Lỗi");
         }
@@ -65,5 +65,10 @@ public class AddTramController implements Initializable {
             alert.setContentText("Nhập thiếu!");
         }
         alert.show();
+    }
+    public void clearHandler(){
+        txtDiaChi.setText("");
+        txtID.setText("");
+        txtName.setText("");
     }
 }

@@ -10,6 +10,7 @@ import com.dht.services.XeService;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -36,7 +37,7 @@ public class AddXeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // txtID chi co the nhap so toi da 10 ky tu
+        // listener chi nhap duoc so voi 10 ky ty
         txtID.textProperty().addListener(new ChangeListener<String>(){
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
@@ -52,6 +53,7 @@ public class AddXeController implements Initializable {
             }
         });
     }    
+    //xoa tram khhi click button
     public void addXeHandler() throws SQLException{
        int id = Integer.parseInt(txtID.getText());
        String bienSo = txtBienSo.getText();
@@ -65,6 +67,7 @@ public class AddXeController implements Initializable {
            xe = new Xe(id, bienSo, soGhe, loaiXe, namSX);
            if(XeService.addXe(xe) == true){
                alert.setContentText("Thêm thành công");
+               clearHandler();
             }
            else alert.setContentText("Thêm thất bại, kiểm tra lại ID");
        } 
@@ -72,6 +75,12 @@ public class AddXeController implements Initializable {
            alert.setContentText("Nhập thiếu");
        alert.show();
     }
-    
+    public void clearHandler(){
+        dateNamSX.setValue(LocalDate.EPOCH);
+        txtID.setText("");
+        txtLoaiXe.setText("");
+        txtBienSo.setText("");
+        txtSoGhe.setText("");
+    }
     
 }

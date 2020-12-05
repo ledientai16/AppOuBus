@@ -11,11 +11,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="rootPane" prefHeight="663.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.PrimaryController">
    <top>
       <AnchorPane prefHeight="39.0" prefWidth="929.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="1007.0" layoutY="-1.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0">
+               <image>
+                  <Image url="@../../images/power.png" />
+               </image>
+            </ImageView>
             <HBox layoutX="3.0" prefHeight="20.0" prefWidth="168.0">
                <children>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
@@ -30,15 +34,6 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="933.0" layoutY="3.0" prefHeight="33.0" prefWidth="39.0">
-               <children>
-                  <ImageView fitHeight="32.0" fitWidth="47.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/power.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
          </children>
       </AnchorPane>
    </top>
@@ -47,9 +42,9 @@
          <children>
             <Pane layoutY="6.0" prefHeight="61.0" prefWidth="163.0">
                <children>
-                  <Label layoutX="8.0" layoutY="15.0" prefHeight="32.0" prefWidth="155.0" text="APP OU BUS">
+                  <Label layoutY="14.0" prefHeight="33.0" prefWidth="182.0" text="APP OU BUS" textFill="WHITE">
                      <font>
-                        <Font name="Futura-Bold" size="26.0" />
+                        <Font name="Arial Bold" size="29.0" />
                      </font>
                   </Label>
                </children>

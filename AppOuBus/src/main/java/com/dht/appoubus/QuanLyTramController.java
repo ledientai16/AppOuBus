@@ -44,8 +44,7 @@ import javafx.stage.StageStyle;
  */
 public class QuanLyTramController implements Initializable {
     @FXML TableView <Tram> tableTram;
-    @FXML TextField txtName;
-    @FXML TextField txtDiaChi;
+    @FXML TextField txtFind;
     /**
      * Initializes the controller class.
      */
@@ -54,10 +53,17 @@ public class QuanLyTramController implements Initializable {
         // TODO
         loadTableTram();
         try {
-            loadData();
+            loadData("");
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        txtFind.textProperty().addListener(es ->{
+            try {
+                loadData(txtFind.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }    
     public void loadTableTram(){
         TableColumn colID = new TableColumn("Trạm ID");
@@ -69,60 +75,22 @@ public class QuanLyTramController implements Initializable {
         TableColumn colDiaChi = new TableColumn("Địa Chỉ");
         colDiaChi.setCellValueFactory(new PropertyValueFactory("diaChi"));
         
-        TableColumn colAction = new TableColumn("xóa");
-        colAction.setCellFactory(et -> {
-            
-            TableCell cell = new TableCell();
-           
-                
-            
-                Button btn = new Button("Delete");
-                btn.setOnAction(evt -> {
-                // Event xóa Traamj
-                    Button b = (Button) evt.getSource();
-                    TableCell c = (TableCell) b.getParent();
-                    
-                    Tram t = (Tram) c.getTableRow().getItem();
-                    int temp = t.getTramID();
-                    String id = String.valueOf(temp);
-                
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setContentText("Bạn chắc chắn xóa? Nó sẽ xóa các lựa chọn liên quan!");
-                    alert.showAndWait().ifPresent(res -> {
-                        try {
-                            if(TramService.deleteTram(id) == true){
-                               alert.setContentText("Đã xóa");
-                               loadData();
-                            }
-                            else
-                                alert.setContentText("Xóa thất bại");
-                               } catch (SQLException ex) {
-                            Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    alert.show();
-                });
-                   
-                
-                });
+       
         
            
-                cell.setGraphic(btn);
-            return cell;
-        });
-            
         
 
         //thiet lap kich thuoc tableColumn
         colID.prefWidthProperty().bind(tableTram.widthProperty().multiply(0.2));
         colName.prefWidthProperty().bind(tableTram.widthProperty().multiply(0.3));
-        colDiaChi.prefWidthProperty().bind(tableTram.widthProperty().multiply(0.3));
-        colAction.prefWidthProperty().bind(tableTram.widthProperty().multiply(0.2));
+        colDiaChi.prefWidthProperty().bind(tableTram.widthProperty().multiply(0.5));
+     
         
-        tableTram.getColumns().addAll(colID, colName, colDiaChi,colAction);
+        tableTram.getColumns().addAll(colID, colName, colDiaChi);
     }
-    public void loadData() throws SQLException{
+    public void loadData(String kw) throws SQLException{
         tableTram.getItems().clear();
-        tableTram.setItems(FXCollections.observableArrayList(TramService.getTram()));
+        tableTram.setItems(FXCollections.observableArrayList(TramService.getTram(kw)));
         
     }
     //hien man hinh them tram
@@ -136,13 +104,34 @@ public class QuanLyTramController implements Initializable {
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.showAndWait();
-            loadData();
+            loadData("");
         } catch (IOException ex) {
             Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //Xoa tram khi click
+    public void deleteTramHandler(){
+        Tram selectItem = tableTram.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        String i = String.valueOf(selectItem.getTramID());
+        String ten = selectItem.getName();
+        alert.setContentText("Bạn chắc chắn xóa Tram: tramId =" + i +" tên Trạm = " + ten + "?");
+        alert.showAndWait().ifPresent(res -> {
+            if(TramService.deleteTram(i) == true){
+              alert.setContentText("Đã xóa thành công");
+                try {
+                    loadData("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else
+              alert.setContentText("Xóa thất bại?Dữ liệu trạm có thể đang được dùng");
+            alert.show();
+        });
+    }
     public void refreshTableTamHandler() throws SQLException{
-        loadData();
+        
+        loadData("");
     }
 }

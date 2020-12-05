@@ -22,11 +22,18 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class XeService {
-    public static List <Xe> getXe() throws SQLException{
+    public static List <Xe> getXe(String kw) throws SQLException{
         
         Connection conn = Utils.getConn();
         String sql = "SELECT * FROM xe";
+        if(kw!=null && !kw.trim().isEmpty())
+            sql += " Where BienSo like ?";
+        
         PreparedStatement stm = conn.prepareStatement(sql);
+        
+        if (kw != null && !kw.trim().isEmpty())
+            stm.setString(1, String.format("%%%s%%", kw.trim()));
+        
         ResultSet res = stm.executeQuery();
         
         List <Xe> listXe = new ArrayList();

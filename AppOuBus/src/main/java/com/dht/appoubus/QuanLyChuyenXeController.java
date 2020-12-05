@@ -45,6 +45,7 @@ public class QuanLyChuyenXeController implements Initializable {
         TableColumn colMoTa = new TableColumn("Mô tả");
         colMoTa.setCellValueFactory(new PropertyValueFactory("moTa"));
         
+     
         tableChuyenXe.getColumns().addAll(colID,colMoTa);
     }
     //fuction load data to TableChuyenXe from DB

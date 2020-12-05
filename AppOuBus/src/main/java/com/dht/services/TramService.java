@@ -20,11 +20,14 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class TramService {
-    public static List<Tram> getTram() throws SQLException{
+    public static List<Tram> getTram(String kw) throws SQLException{
         Connection conn = Utils.getConn();
         String sql = "Select * From tram";
-        
+        if(kw !=null && !kw.trim().isEmpty())
+            sql += " WHERE Name like ?";
         PreparedStatement stm = conn.prepareStatement(sql);
+        if(kw !=null && !kw.trim().isEmpty())
+            stm.setString(1,String.format("%%%s%%",kw.trim()));
         ResultSet rs = stm.executeQuery();
         
         List <Tram> listTram = new ArrayList<>();

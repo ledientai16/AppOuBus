@@ -45,6 +45,7 @@ import javafx.stage.StageStyle;
 public class QuanLyXeController implements Initializable {
 
     @FXML TableView <Xe>tableXe; 
+    @FXML TextField txtFind;
     /**
      * Initializes the controller class.
      */
@@ -54,11 +55,18 @@ public class QuanLyXeController implements Initializable {
         try {
             // TODO
             loadXe();
-            loadData();
+            loadData("");
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyXeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        //Tim kiem theo bien so xe
+        txtFind.textProperty().addListener(es ->{
+            try {
+                loadData(txtFind.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(QuanLyXeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
        
     } 
     //load table xe
@@ -99,47 +107,16 @@ public class QuanLyXeController implements Initializable {
             return cell;
         });
         
-        TableColumn colAction = new TableColumn();
-        colAction.setCellFactory(et -> {
-            TableCell cell = new TableCell();
-            Button btn = new Button("XÓA");
-            btn.setOnAction(evt -> {
-                Button b = (Button) evt.getSource();
-                TableCell c = (TableCell) b.getParent();
-                Xe x = (Xe) c.getTableRow().getItem();
-                
-                String id = String.valueOf(x.getXeID());
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setContentText("Bạn có muốn xóa không?");
-                alert.showAndWait().ifPresent(res -> {
-                        try {
-                            if(XeService.deleteXe(id) == true){
-                               alert.setContentText("Đã xóa");
-                               loadData();
-                            }
-                            else
-                                alert.setContentText("Xóa thất bại");
-                               } catch (SQLException ex) {
-                            Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    alert.show();
-            });
-              
-            });
-            cell.setGraphic(btn);
-            return cell;
-        });
         colID.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
         colBienXo.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
-        colLoai.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
-        colNamSX.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
-        colAction.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
-        tableXe.getColumns().addAll(colID,colBienXo,colLoai,colSoGhe,colNamSX,colAction);
+        colLoai.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.3));
+        colNamSX.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.3));
+        tableXe.getColumns().addAll(colID,colBienXo,colLoai,colSoGhe,colNamSX);
    }
    //load data xe
-   public void loadData() throws SQLException{
+   public void loadData(String kw) throws SQLException{
        tableXe.getItems().clear();
-       tableXe.setItems(FXCollections.observableArrayList(XeService.getXe()));
+       tableXe.setItems(FXCollections.observableArrayList(XeService.getXe(kw)));
        
    }
    //chọn auto ID;
@@ -156,9 +133,32 @@ public class QuanLyXeController implements Initializable {
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.showAndWait();
-            loadData();
+            loadData("");
         } catch (IOException ex) {
             Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
         }
+   }
+   //delete xe khi click button
+   public void deleteXeHandler(){
+       Xe xe = tableXe.getSelectionModel().getSelectedItem();
+       String id = String.valueOf(xe.getXeID());
+       String bienSo = xe.getBienSo();
+       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+       alert.setContentText("Bạn có chắc muốn xóa Xe: ID=" + id + ", biển số: " + bienSo +"?");
+       alert.showAndWait().ifPresent(res ->{
+           try {
+               if(XeService.deleteXe(id)== true){
+                   alert.setContentText("Xóa thành công");
+                   loadData("");
+                   }
+               else alert.setContentText("Xóa thất bại? dữ liệu xe muốn xóa có thể đang được sử dụng");
+           } catch (SQLException ex) {
+               Logger.getLogger(QuanLyXeController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       });
+   }
+   //refresh lai data
+   public void refreshTableHandler() throws SQLException{
+       loadData("");
    }
 }
