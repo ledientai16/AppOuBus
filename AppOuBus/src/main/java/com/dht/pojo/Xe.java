@@ -29,14 +29,10 @@ public class Xe {
         this.namSX = namSX;
      
     }
-    public Xe(String bienSo, int soGhe, String loaiXe, Date namSX) {
-        
-        this.bienSo = bienSo;
-        this.soGhe = soGhe;
-        this.loaiXe = loaiXe;
-        this.namSX = namSX;
-     
+
+    public Xe() {
     }
+    
 
 
     

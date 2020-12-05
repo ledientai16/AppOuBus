@@ -42,10 +42,11 @@ public class TramService {
         Connection conn = Utils.getConn();
         try {
             conn.setAutoCommit(false);
-            String sql = "INSERT INTO tram(Name, DiaChi)" + "Values(?, ?)";
+            String sql = "INSERT INTO tram(TramID,Name, DiaChi)" + "Values(?,?,?)";
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1,tram.getName());
-            stm.setString(2,tram.getDiaChi());
+            stm.setInt(1,tram.getTramID());
+            stm.setString(2,tram.getName());
+            stm.setString(3,tram.getDiaChi());
             int executeUpdate = stm.executeUpdate();
                 
             

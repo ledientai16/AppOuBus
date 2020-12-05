@@ -22,10 +22,10 @@ public class App extends Application {
 protected static String passWord;
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("Primary"));
         
         stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
+        
         stage.show();
         
     }

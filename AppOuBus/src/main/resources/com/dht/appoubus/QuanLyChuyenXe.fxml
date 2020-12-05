@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="599.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyChuyenXeController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="648.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyChuyenXeController">
    <children>
-      <TableView fx:id="tableChuyenXe" layoutX="383.0" layoutY="13.0" prefHeight="501.0" prefWidth="401.0" />
+      <TableView fx:id="tableChuyenXe" layoutX="383.0" layoutY="13.0" prefHeight="501.0" prefWidth="244.0" />
       <GridPane layoutY="44.0" prefHeight="471.0" prefWidth="381.0" style="-fx-background-color: black;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="79.66666666666667" />

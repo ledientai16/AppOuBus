@@ -35,13 +35,7 @@ public class PrimaryController {
         System.exit(0);
     }
 
-    /**
-     *
-     * event Change UI
-     * change UI from primary UI
-     */
     
-    @FXML
     public void loadUI(String UI) throws IOException{
        
         AnchorPane pane = FXMLLoader.load(getClass().getResource(UI));
@@ -50,15 +44,13 @@ public class PrimaryController {
         
    }
         
-    /**
-     *
-     * @param event
-     */
-    @FXML
+    
+   
+  
     public void loadQuanLyChuyenXeUI(ActionEvent e){
         
         try {
-            loadUI("quanlychuyenxe.fxml");
+            loadUI("QuanLyChuyenXe.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,14 +58,14 @@ public class PrimaryController {
     public void loadQuanLyTramUI(ActionEvent e){
         
         try {
-            loadUI("quanlytram.fxml");
+            loadUI("QuanLyTram.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void loadQuanLyXeUI(ActionEvent e){
         try {
-            loadUI("quanlyxe.fxml");
+            loadUI("QuanLyXe.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,7 +73,7 @@ public class PrimaryController {
     public void loadLoginUI(){
         
         try {
-            loadUI("login.fxml");
+            loadUI("Login.fxml");
         } catch (IOException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }

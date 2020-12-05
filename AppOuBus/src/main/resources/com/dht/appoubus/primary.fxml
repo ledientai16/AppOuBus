@@ -11,89 +11,86 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="636.0" prefWidth="958.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.PrimaryController">
-   <children>
-      <BorderPane fx:id="rootPane" prefHeight="558.0" prefWidth="933.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <AnchorPane prefHeight="39.0" prefWidth="929.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
+
+<BorderPane fx:id="rootPane" prefHeight="663.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.PrimaryController">
+   <top>
+      <AnchorPane prefHeight="39.0" prefWidth="929.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox layoutX="3.0" prefHeight="20.0" prefWidth="168.0">
                <children>
-                  <HBox layoutX="3.0" prefHeight="20.0" prefWidth="168.0">
-                     <children>
-                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/pie-chart.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="33.0" prefWidth="129.0" text="Ticket App" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" layoutX="763.0" layoutY="4.0" prefHeight="33.0" prefWidth="191.0" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
-                     <children>
-                        <ImageView fitHeight="32.0" fitWidth="37.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/power.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
+                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/pie-chart.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="33.0" prefWidth="129.0" text="Ticket App" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
                </children>
-            </AnchorPane>
-         </top>
-         <left>
-            <AnchorPane prefHeight="566.0" prefWidth="192.0" style="-fx-background-color: #F4A460;" BorderPane.alignment="CENTER">
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="933.0" layoutY="3.0" prefHeight="33.0" prefWidth="39.0">
                <children>
-                  <Pane layoutY="6.0" prefHeight="61.0" prefWidth="163.0">
-                     <children>
-                        <Label layoutX="8.0" layoutY="15.0" prefHeight="32.0" prefWidth="155.0" text="APP OU BUS">
-                           <font>
-                              <Font name="Futura-Bold" size="26.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <MenuButton layoutY="136.0" minWidth="56.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="185.0" text="Quản Lý">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#loadQuanLyChuyenXeUI" text="Quản Lý Chuyến Xe" />
-                        <MenuItem mnemonicParsing="false" onAction="#loadQuanLyTramUI" text="Quản Lý Trạm" />
-                        <MenuItem mnemonicParsing="false" onAction="#loadQuanLyXeUI" text="Quản Lý Xe" />
-                     </items>
-                     <graphic>
-                        <ImageView fitHeight="51.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/project-management.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </MenuButton>
-                  <MenuButton layoutY="287.0" minWidth="56.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="187.0" text="Bán Vé">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Thêm Chuyến" />
-                        <MenuItem mnemonicParsing="false" text="Kiểm tra chuyến đi" />
-                     </items>
-                     <graphic>
-                        <ImageView fitHeight="53.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/ticket.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="19.0" />
-                     </font>
-                  </MenuButton>
+                  <ImageView fitHeight="32.0" fitWidth="47.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/power.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </AnchorPane>
-         </left>
-         <center>
-            <AnchorPane prefHeight="598.0" prefWidth="770.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
-   </children>
-</AnchorPane>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="566.0" prefWidth="192.0" style="-fx-background-color: #F4A460;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutY="6.0" prefHeight="61.0" prefWidth="163.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="15.0" prefHeight="32.0" prefWidth="155.0" text="APP OU BUS">
+                     <font>
+                        <Font name="Futura-Bold" size="26.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <MenuButton layoutY="136.0" minWidth="56.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="185.0" text="Quản Lý">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#loadQuanLyChuyenXeUI" text="Quản Lý Chuyến Xe" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadQuanLyTramUI" text="Quản Lý Trạm" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadQuanLyXeUI" text="Quản Lý Xe" />
+               </items>
+               <graphic>
+                  <ImageView fitHeight="51.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/project-management.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </MenuButton>
+            <MenuButton layoutY="287.0" minWidth="56.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="187.0" text="Bán Vé">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Thêm Chuyến" />
+                  <MenuItem mnemonicParsing="false" text="Kiểm tra chuyến đi" />
+               </items>
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/ticket.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="624.0" prefWidth="865.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

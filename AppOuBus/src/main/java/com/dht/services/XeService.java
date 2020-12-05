@@ -46,15 +46,16 @@ public class XeService {
     
     public static boolean addXe(Xe xe){
         Connection conn = Utils.getConn();
-        String sql = "INSERT INTO xe(BienSo,SoGhe, LoaiXe, NamSX)" + "Values(?,?,?,?)";
+        String sql = "INSERT INTO xe(XeID,BienSo,SoGhe, LoaiXe, NamSX)" + "Values(?,?,?,?,?)";
         try {
             conn.setAutoCommit(false);
             PreparedStatement stm = conn.prepareStatement(sql);
             
-            stm.setString(1,xe.getBienSo());
-            stm.setInt(2, xe.getSoGhe());
-            stm.setString(3, xe.getLoaiXe());
-            stm.setDate(4, (Date) xe.getNamSX());
+            stm.setInt(1, xe.getXeID());
+            stm.setString(2,xe.getBienSo());
+            stm.setInt(3, xe.getSoGhe());
+            stm.setString(4, xe.getLoaiXe());
+            stm.setDate(5, (Date) xe.getNamSX());
             
             int execute = stm.executeUpdate();
              

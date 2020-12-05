@@ -5,7 +5,7 @@ module com.dht.appoubus {
     requires javafx.graphics;
     requires java.base;
     requires java.sql;
-     opens com.dht.appoubus to javafx.fxml;
+    opens com.dht.appoubus to javafx.fxml;
     exports com.dht.appoubus;
     requires javafx.graphicsEmpty;
     exports com.dht.pojo;
