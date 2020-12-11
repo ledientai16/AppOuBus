@@ -78,4 +78,11 @@ public class PrimaryController {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void loadQuanLyTuyenDuong(){
+        try {
+            loadUI("QuanLyTuyenDuong.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

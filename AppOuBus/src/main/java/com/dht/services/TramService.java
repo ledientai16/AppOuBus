@@ -78,4 +78,17 @@ public class TramService {
         
       return false;
     }
+    public static Tram getTramByID(int id) throws SQLException{
+        Connection conn = Utils.getConn();
+        String sql = "Select * From tram WHERE TramID = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        stm.setInt(1,id);
+        ResultSet rs = stm.executeQuery();
+        while(rs.next()){  
+            Tram tram = new Tram( rs.getInt("TramID"),rs.getString("Name"), rs.getString("DiaChi"));
+             return tram;
+        }
+        return null;
+    }
+    
 }

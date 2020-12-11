@@ -5,6 +5,7 @@
  */
 package com.dht.appoubus;
 
+import com.dht.appoubus.QuanLyTramController;
 import java.sql.Date;
 import com.dht.pojo.Xe;
 
@@ -106,12 +107,15 @@ public class QuanLyXeController implements Initializable {
             
             return cell;
         });
+        TableColumn colTram = new TableColumn("Trạm xe đậu");
+        colTram.setCellValueFactory(new PropertyValueFactory("tramID"));
         
         colID.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
         colBienXo.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
-        colLoai.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.3));
-        colNamSX.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.3));
-        tableXe.getColumns().addAll(colID,colBienXo,colLoai,colSoGhe,colNamSX);
+        colLoai.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
+        colNamSX.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
+        colTram.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
+        tableXe.getColumns().addAll(colID,colBienXo,colLoai,colSoGhe,colNamSX,colTram);
    }
    //load data xe
    public void loadData(String kw) throws SQLException{
@@ -125,8 +129,8 @@ public class QuanLyXeController implements Initializable {
    //show ui add xe
    public void showAddXe() throws SQLException{
         try {
-            AnchorPane addTram = FXMLLoader.load(getClass().getResource("AddXe.fxml"));
-            Scene scene = new Scene(addTram);
+            AnchorPane addXe = FXMLLoader.load(getClass().getResource("AddXe.fxml"));
+            Scene scene = new Scene(addXe);
         
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setTitle("Chức năng thêm Xe");

@@ -70,4 +70,11 @@ public class Tram {
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
+
+    @Override
+    public String toString() {
+        String result = String.format("%d.%s(%s)", this.tramID,this.name,this.diaChi);
+        return result;
+    }
+    
 }

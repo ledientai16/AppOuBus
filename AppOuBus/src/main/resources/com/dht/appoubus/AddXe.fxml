@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -9,44 +10,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="461.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.AddXeController">
+<AnchorPane id="AnchorPane" prefHeight="484.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.AddXeController">
    <children>
       <Label alignment="CENTER" layoutY="-3.0" prefHeight="65.0" prefWidth="485.0" style="-fx-background-color: #00CED1;" text="Thêm Xe" textFill="WHITE">
          <font>
             <Font name="System Bold" size="41.0" />
          </font>
       </Label>
-      <Label layoutX="21.0" layoutY="105.0" text="Xe ID:">
+      <Label layoutX="21.0" layoutY="92.0" text="Xe ID:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="21.0" layoutY="155.0" text="Biển số xe:">
+      <Label layoutX="16.0" layoutY="142.0" text="Biển số xe:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="21.0" layoutY="209.0" prefHeight="26.0" prefWidth="59.0" text="Số ghế:">
+      <Label layoutX="21.0" layoutY="195.0" prefHeight="26.0" prefWidth="59.0" text="Số ghế:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="23.0" layoutY="267.0" text="Loại xe:">
+      <Label layoutX="23.0" layoutY="241.0" text="Loại xe:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="21.0" layoutY="327.0" text="Năm sản xuất:">
+      <Label layoutX="16.0" layoutY="295.0" text="Năm sản xuất:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="txtID" layoutX="135.0" layoutY="105.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField fx:id="txtSoGhe" layoutX="135.0" layoutY="209.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField fx:id="txtBienSo" layoutX="135.0" layoutY="155.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField fx:id="txtLoaiXe" layoutX="135.0" layoutY="267.0" prefHeight="25.0" prefWidth="276.0" />
-      <DatePicker fx:id="dateNamSX" layoutX="135.0" layoutY="327.0" prefHeight="25.0" prefWidth="276.0" />
-      <Button layoutX="16.0" layoutY="379.0" mnemonicParsing="false" onMouseClicked="#addXeHandler" prefHeight="60.0" prefWidth="168.0" style="-fx-background-color: #66CDAA;" text="Thêm Xe" textFill="WHITE">
+      <TextField fx:id="txtID" layoutX="135.0" layoutY="92.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="txtSoGhe" layoutX="135.0" layoutY="195.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="txtBienSo" layoutX="135.0" layoutY="142.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="txtLoaiXe" layoutX="135.0" layoutY="241.0" prefHeight="25.0" prefWidth="276.0" />
+      <DatePicker fx:id="dateNamSX" layoutX="135.0" layoutY="295.0" prefHeight="25.0" prefWidth="276.0" />
+      <Button layoutX="11.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#addXeHandler" prefHeight="60.0" prefWidth="168.0" style="-fx-background-color: #66CDAA;" text="Thêm Xe" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
@@ -58,7 +59,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="289.0" layoutY="379.0" mnemonicParsing="false" onMouseClicked="#clearHandler" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #00BFFF;" text="Clear" textFill="WHITE">
+      <Button layoutX="292.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#clearHandler" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #00BFFF;" text="Clear" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
@@ -70,5 +71,11 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label layoutX="9.0" layoutY="346.0" text="Trạm đặt xe:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="choiceTram" layoutX="135.0" layoutY="346.0" prefHeight="25.0" prefWidth="276.0" />
    </children>
 </AnchorPane>

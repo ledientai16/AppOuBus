@@ -43,8 +43,8 @@ public class XeService {
            String loaiXe = res.getString("LoaiXe");
            int soGhe = res.getInt("SoGhe");
            Date namSX = res.getObject("NamSX", Date.class);
-           
-           Xe x = new Xe(xeID, bienSoXe, soGhe, loaiXe, namSX);
+           int tramID = res.getInt("TramID");
+           Xe x = new Xe(xeID, bienSoXe, soGhe, loaiXe, namSX,TramService.getTramByID(tramID));
            listXe.add(x);
        }
        return listXe;
@@ -53,7 +53,7 @@ public class XeService {
     
     public static boolean addXe(Xe xe){
         Connection conn = Utils.getConn();
-        String sql = "INSERT INTO xe(XeID,BienSo,SoGhe, LoaiXe, NamSX)" + "Values(?,?,?,?,?)";
+        String sql = "INSERT INTO xe(XeID,BienSo,SoGhe, LoaiXe, NamSX,TramID)" + "Values(?,?,?,?,?,?)";
         try {
             conn.setAutoCommit(false);
             PreparedStatement stm = conn.prepareStatement(sql);
@@ -63,7 +63,7 @@ public class XeService {
             stm.setInt(3, xe.getSoGhe());
             stm.setString(4, xe.getLoaiXe());
             stm.setDate(5, (Date) xe.getNamSX());
-            
+            stm.setInt(6, xe.getTram().getTramID());
             int execute = stm.executeUpdate();
              
             
@@ -86,5 +86,19 @@ public class XeService {
                 
  
         return execute > 0;
+    }
+     public static Xe getXeByID(int id) throws SQLException{
+        Connection conn = Utils.getConn();
+        String sql = "Select * From xe WHERE XeID = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        stm.setInt(1,id);
+        ResultSet rs = stm.executeQuery();
+        while(rs.next()){  
+           int tramID = rs.getInt("TramID");
+           Xe x = new Xe(rs.getInt("XeID"), rs.getString("BienSo"), rs.getInt("SoGhe"),rs.getString("LoaiXe"),
+                   rs.getObject("NamSX", Date.class),TramService.getTramByID(tramID));
+           return x;
+        }
+        return null;
     }
 }

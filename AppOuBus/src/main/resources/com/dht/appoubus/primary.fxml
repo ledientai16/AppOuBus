@@ -54,6 +54,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#loadQuanLyChuyenXeUI" text="Quản Lý Chuyến Xe" />
                   <MenuItem mnemonicParsing="false" onAction="#loadQuanLyTramUI" text="Quản Lý Trạm" />
                   <MenuItem mnemonicParsing="false" onAction="#loadQuanLyXeUI" text="Quản Lý Xe" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadQuanLyTuyenDuong" text="Quản lý tuyến đường" />
                </items>
                <graphic>
                   <ImageView fitHeight="51.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">

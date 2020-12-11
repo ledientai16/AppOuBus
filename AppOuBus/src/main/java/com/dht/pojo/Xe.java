@@ -20,14 +20,14 @@ public class Xe {
     private int soGhe;
     private String loaiXe;
     private Date namSX;
-  
-    public Xe(int xeID, String bienSo, int soGhe, String loaiXe, Date namSX) {
+    private Tram tram;
+    public Xe(int xeID, String bienSo, int soGhe, String loaiXe, Date namSX,Tram tram) {
         this.xeID = xeID;
         this.bienSo = bienSo;
         this.soGhe = soGhe;
         this.loaiXe = loaiXe;
         this.namSX = namSX;
-     
+        this.tram = tram;
     }
 
     public Xe() {
@@ -106,9 +106,18 @@ public class Xe {
         this.namSX = namSX;
     }
 
+    public void setTram(Tram tram) {
+        this.tram = tram;
+    }
 
+    public Tram getTram() {
+        return tram;
+    }
+
+    @Override
+    public String toString() {
+        String result = String.format("%d.%s(%s.%d)", this.xeID,this.bienSo,this.loaiXe,this.soGhe);
+        return result;
+    }
     
- 
-    
-   
 }

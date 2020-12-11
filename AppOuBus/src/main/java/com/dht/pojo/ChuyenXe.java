@@ -6,6 +6,8 @@
 package com.dht.pojo;
 
 import java.sql.Time;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -14,26 +16,49 @@ import java.util.GregorianCalendar;
  */
 public class ChuyenXe {
     private int chuyenXeID;
-    private String moTa;
-    private int toTram;
-    private int fromTram;
-    private int xeID;
-    private Time timeStart;
-    private Time timeEnd;
-    private GregorianCalendar date;
-
-    public ChuyenXe(int chuyenXeID, int toTram, int fromTram, int XeID) {
-        this.chuyenXeID = chuyenXeID;
-        
-        this.toTram = toTram;
-        this.fromTram = fromTram;
-        
-    }
-    public ChuyenXe(int chuyenXeID, String moTa){
-     this.chuyenXeID = chuyenXeID;
-     this.moTa = moTa;
-    }
+    private TuyenDuong tuyenDuong;
+    private Time beginTime;
+    private Xe xe;
+    private Date date;
+    private double giaTien;
+    private int soVe;
     public ChuyenXe() {
+    
+    }
+
+    public ChuyenXe(int chuyenXeID, TuyenDuong tuyenDuong, Time beginTime, Xe xe, Date date, double giaTien, int soVe) {
+        this.chuyenXeID = chuyenXeID;
+        this.tuyenDuong = tuyenDuong;
+        this.beginTime = beginTime;
+        this.xe = xe;
+        this.date = date;
+        this.giaTien = giaTien;
+        this.soVe = soVe;
+    }
+
+    
+    public ChuyenXe(int chuyenXeID, TuyenDuong tuyenDuong, Time beginTime, Xe xe, Date date) {
+        this.chuyenXeID = chuyenXeID;
+        this.tuyenDuong = tuyenDuong;
+        this.beginTime = beginTime;
+        this.xe = xe;
+        this.date = date;
+    }
+
+    public void setSoVe(int soVe) {
+        this.soVe = soVe;
+    }
+
+    public int getSoVe() {
+        return soVe;
+    }
+    
+    public double getGiaTien() {
+        return giaTien;
+    }
+
+    public void setGiaTien(double giaTien) {
+        this.giaTien = giaTien;
     }
 
     /**
@@ -51,55 +76,59 @@ public class ChuyenXe {
     }
 
     /**
-     * @return the name
+     * @return the tuyenDuong
      */
-  
-
-    /**
-     * @return the toTram
-     */
-    public int getToTram() {
-        return toTram;
+    public TuyenDuong getTuyenDuong() {
+        return tuyenDuong;
     }
 
     /**
-     * @param toTram the toTram to set
+     * @param tuyenDuong the tuyenDuong to set
      */
-    public void setToTram(int toTram) {
-        this.toTram = toTram;
+    public void setTuyenDuong(TuyenDuong tuyenDuong) {
+        this.tuyenDuong = tuyenDuong;
     }
 
     /**
-     * @return the fromTram
+     * @return the beginTime
      */
-    public int getFromTram() {
-        return fromTram;
+    public Time getBeginTime() {
+        return beginTime;
     }
 
     /**
-     * @param fromTram the fromTram to set
+     * @param beginTime the beginTime to set
      */
-    public void setFromTram(int fromTram) {
-        this.fromTram = fromTram;
+    public void setBeginTime(Time beginTime) {
+        this.beginTime = beginTime;
     }
 
     /**
-     * @return the XeID
+     * @return the xe
      */
-    public int getXeID() {
-        return xeID;
+    public Xe getXe() {
+        return xe;
     }
 
     /**
-     * @param XeID the XeID to set
+     * @param xe the xe to set
      */
-    public void setXeID(int XeID) {
-        this.xeID = xeID;
+    public void setXe(Xe xe) {
+        this.xe = xe;
     }
 
-    public String getMoTa() {
-        return moTa;
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
     }
-    
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
 }
