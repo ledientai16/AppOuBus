@@ -5,12 +5,16 @@
  */
 package com.dht.services;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.DriverManager;
 import java.sql.SQLException; 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -53,5 +57,26 @@ public class Utils {
          }
          return minutes;
      }
-   
+    public static boolean checkTime(Time t, Date d){
+     
+       int checkDay = d.compareTo(Date.valueOf(LocalDate.now()));
+        if(checkDay > 0)
+            return true;
+        else 
+            if(checkDay < 0)
+                return false;
+            else{
+                long t1 = getTime(t);
+                long t2 = getTime(Time.valueOf(LocalTime.now()));
+                if(t1 > t2)
+                    return true;
+                return false;
+            }
+            
+        
+    }
+
+    private static long getTime(Time t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

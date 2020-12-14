@@ -153,16 +153,7 @@ public class TuyenDuong {
     /**
      * @return the tuyenDuongKhuHoiID
      */
-    public int getTuyenDuongKhuHoiID() {
-        return tuyenKhuHoiID;
-    }
-
-    /**
-     * @param tuyenDuongKhuHoiID the tuyenDuongKhuHoiID to set
-     */
-    public void setTuyenDuongKhuHoiID(int tuyenDuongKhuHoiID) {
-        this.tuyenKhuHoiID = tuyenDuongKhuHoiID;
-    }
+  
 
     @Override
     public String toString() {

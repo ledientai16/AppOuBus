@@ -43,7 +43,7 @@ public class AddTuyenDuongController implements Initializable {
     @FXML TextField txtTuyenDuongName;
     @FXML TextField txtKhoangCach;
     @FXML Label labelTime;
-    @FXML RadioButton autoKhuHoi;
+
 
     /**
      * Initializes the controller class.
@@ -80,15 +80,16 @@ public class AddTuyenDuongController implements Initializable {
     }    
     public void addTuyenDuongHandler() throws SQLException{
         int id = Integer.parseInt(txtTuyenDuongID.getText());
-        String name = txtTuyenDuongName.getText();
+        
         Tram from = choiceFromTram.getValue();
         Tram to =   choiceToTram.getValue();
+        String name = from.getName() + "-" + to.getName();
         int distance = Integer.parseInt(txtKhoangCach.getText());
        
-        boolean auto = autoKhuHoi.isSelected();
+       
         TuyenDuong tuyenduong = new TuyenDuong(id, name, distance, from,to);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(TuyenDuongService.addTuyen(tuyenduong, auto) == true){
+        if(TuyenDuongService.addTuyen(tuyenduong) == true){
             alert.setContentText("add thành công");
         }
         else alert.setContentText("add thất bại");

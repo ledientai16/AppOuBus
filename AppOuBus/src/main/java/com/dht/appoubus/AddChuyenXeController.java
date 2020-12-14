@@ -5,15 +5,21 @@
  */
 package com.dht.appoubus;
 
+import com.dht.pojo.ChuyenXe;
+import com.dht.pojo.KhungGio;
 import com.dht.pojo.Tram;
 import com.dht.pojo.TuyenDuong;
 import com.dht.pojo.Xe;
+import com.dht.services.ChuyenXeService;
+import com.dht.services.KhungGioService;
 import com.dht.services.TuyenDuongService;
 import com.dht.services.Utils;
 import com.dht.services.XeService;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -38,13 +44,10 @@ public class AddChuyenXeController implements Initializable {
 
     
     @FXML TextField txtGia;
-    @FXML DatePicker date;
+    @FXML DatePicker datePicker;
     @FXML ChoiceBox<Xe> choiceXe;
     @FXML ChoiceBox<TuyenDuong>choiceTuyenDuong;
-    @FXML ChoiceBox<Integer>choiceBeginHours;
-    @FXML ChoiceBox<Integer>choiceBeginMinutes;
-    @FXML ChoiceBox<Integer> choiceEndHour; 
-    @FXML ChoiceBox<Integer>choiceEndMinutes;
+    @FXML ChoiceBox<KhungGio>choiceKhungGio;
     private  ArrayList <Integer> hour;
     private ArrayList <Integer> minute;
     /**
@@ -53,11 +56,10 @@ public class AddChuyenXeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-      choiceBeginHours.setItems(FXCollections.observableArrayList(Utils.getListHour()));
-      choiceBeginMinutes.setItems(FXCollections.observableArrayList(Utils.getListMinutes()));
-      choiceEndHour.setItems(FXCollections.observableArrayList(Utils.getListHour()));
-      choiceEndMinutes.setItems(FXCollections.observableArrayList(Utils.getListMinutes()));
+     
+      
         try {
+            choiceKhungGio.setItems(FXCollections.observableArrayList(KhungGioService.getKhungGio()));
             choiceXe.setItems(FXCollections.observableArrayList(XeService.getXe("")));
             choiceTuyenDuong.setItems(FXCollections.observableArrayList(TuyenDuongService.getTuyenDuong("")));
         } catch (SQLException ex) {
@@ -67,32 +69,40 @@ public class AddChuyenXeController implements Initializable {
     } 
     public void addChuyenXeHandler(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        Time begin = new Time(choiceBeginHours.getValue(), choiceBeginMinutes.getValue(), 0);
-        Time end = new Time(choiceEndHour.getValue(), choiceEndMinutes.getValue(), 0);
-        ArrayList <Time> list = (ArrayList <Time>) listSoChuyen(begin, end, choiceTuyenDuong.getValue().getTuyenDuongTime());
-        alert.setContentText("Có " + list.size() +"Chuyến xe sẽ được tạo");
-      
+        Time begin = choiceKhungGio.getValue().getBeginTime();
+        Time end = choiceKhungGio.getValue().getEndTime();
+        ArrayList <Time> list = (ArrayList <Time>) KhungGioService.listSoChuyen(begin, end, choiceTuyenDuong.getValue().getTuyenDuongTime());
+        if(choiceTuyenDuong.getValue().getTuyenKhuHoiID() == 0)
+            alert.setContentText("Chỉ có thể tạo với tuyến có tuyến khứ hồi");
+        alert.setContentText("Sẽ có " + list.size() +"Chuyến xe sẽ được tạo");
+        Date d = Date.valueOf(datePicker.getValue());
+        double gia = Double.valueOf(txtGia.getText());
+        
+        alert.showAndWait().ifPresent(action ->{
+            try {
+                if(choiceTuyenDuong.getValue().getTuyenKhuHoiID() == 0)
+                    alert.setContentText("Tuyến này chưa có khứ hồi");
+                else if(begin != null && end != null&& ChuyenXeService.CheckChuyenXe(choiceXe.getValue().getXeID(), d) == 0)
+                {
+                    for(int i = 0; i < list.size(); i++){
+                        ChuyenXe cx;
+                        if(i % 2 == 0){
+                                cx = new ChuyenXe(choiceTuyenDuong.getValue(),list.get(i),choiceXe.getValue(),d,
+                                gia, choiceXe.getValue().getSoGhe() - 1);
+                        }
+                        else
+                                cx = new ChuyenXe(TuyenDuongService.getTuyenDuongByID(choiceTuyenDuong.getValue().getTuyenKhuHoiID()),list.get(i),choiceXe.getValue(),d,
+                                gia, choiceXe.getValue().getSoGhe() - 1);
+                        ChuyenXeService.addChuyenXe(cx);
+                    }
+                    alert.setContentText("Tạo Thành Công");
+                }   
+                else alert.setContentText("Lỗi nhập thiếu");
+            } catch (SQLException ex) {
+                Logger.getLogger(AddChuyenXeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         alert.show();
     }
-    public List <Time> listSoChuyen(Time begin, Time end, Time t){
-        List <Time> listTime = new ArrayList<>(); 
-        while(begin.getHours()<= end.getHours())
-        {
-            if((begin.getHours()== end.getHours() && begin.getMinutes() >= end.getMinutes()))
-                break;
-            else{
-                int h = begin.getHours() + t.getHours();
-                int m = begin.getMinutes() + t.getMinutes();
-                if(m >= 60){
-                    h++;
-                    m -= 60;
-                }
-                begin.setHours(h);
-                begin.setMinutes(m);
-                Time i = new Time(begin.getHours(),begin.getMinutes(),0);
-                listTime.add(i);
-            }
-        }
-        return listTime;
-    }
+   
 }

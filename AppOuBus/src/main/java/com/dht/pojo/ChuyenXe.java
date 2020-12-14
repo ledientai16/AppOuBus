@@ -44,7 +44,15 @@ public class ChuyenXe {
         this.xe = xe;
         this.date = date;
     }
-
+    public ChuyenXe(TuyenDuong tuyenDuong, Time beginTime, Xe xe, Date date, double giaTien, int soVe) {
+      
+        this.tuyenDuong = tuyenDuong;
+        this.beginTime = beginTime;
+        this.xe = xe;
+        this.date = date;
+        this.giaTien = giaTien;
+        this.soVe = soVe;
+    }
     public void setSoVe(int soVe) {
         this.soVe = soVe;
     }

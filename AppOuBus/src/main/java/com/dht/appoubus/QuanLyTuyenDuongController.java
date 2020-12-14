@@ -43,7 +43,7 @@ import javafx.util.converter.DoubleStringConverter;
  */
 public class QuanLyTuyenDuongController implements Initializable {
 
-    @FXML TableView TableTuyenDuong;
+    @FXML TableView <TuyenDuong> TableTuyenDuong;
     @FXML TextField txtFind;
     /**
      * Initializes the controller class.
@@ -157,9 +157,10 @@ public class QuanLyTuyenDuongController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         String id =String.valueOf( selected.getTuyenDuongID());
         String name = selected.getTuyenDuongName();
-        alert.setContentText("Bạn chắc chắn xóa Tram: tramId =" + id +" tên Trạm = " + name + "?");
+        alert.setContentText("Bạn chắc chắn xóa Tuyến đường: TuyenDuongId =" + id +" tên tuyến đường = " + name + "?");
         alert.showAndWait().ifPresent(res -> {
             try {
+                
                 if(TuyenDuongService.deleteTuyenDuong(id) == true){
                     alert.setContentText("Đã xóa thành công");
                     try {
@@ -180,4 +181,31 @@ public class QuanLyTuyenDuongController implements Initializable {
     public void refreshHandler() throws SQLException{
         loadData("");
     }
-}
+    public void taoKhuHoiHanler(){
+        TuyenDuong selected = (TuyenDuong) TableTuyenDuong.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        String id =String.valueOf( selected.getTuyenDuongID());
+        String name = selected.getTuyenDuongName();
+        alert.setContentText("Bạn muốn tạo tuyến khứ hồi cho " + selected.getTuyenDuongID() +
+                            selected.getTuyenDuongName() + "?");
+        alert.showAndWait().ifPresent(res -> {
+            try {
+                if(TuyenDuongService.taoTuyenKhuHoi(selected) == true){
+                    alert.setContentText("Đã tạo thành công thành công");
+                    try {
+                        loadData("");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else
+                    alert.setContentText("Tạo thất bại?Có thể đã có tuyến khứ hồi hoặc lỗi");
+            } catch (SQLException ex) {
+                Logger.getLogger(QuanLyTuyenDuongController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            alert.show();
+        });
+        
+    }
+    }
+

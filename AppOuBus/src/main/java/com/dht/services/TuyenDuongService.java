@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.SQLType;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Clock;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,16 +54,16 @@ public class TuyenDuongService {
         return list;
         
     }
-    /**public static int taoTuyenKhuHoi(TuyenDuong t) throws SQLException{
+    public static boolean taoTuyenKhuHoi(TuyenDuong t) throws SQLException{
         Connection conn = Utils.getConn();
         PreparedStatement stm;
-        String khuHoiID =String.valueOf(t.getTuyenDuongKhuHoiID());
+        String khuHoiID = String.valueOf(t.getTuyenKhuHoiID());
         conn.setAutoCommit(false);
-        if(khuHoiID != null){
-           return -1;
+        if(khuHoiID == null){
+           return false;
         }
         else{
-            String sql = "SELECT TuyenDuongID from tuyenduong where TuyenDuongID like '100%' ";
+            String sql = "SELECT * from tuyenduong where TuyenDuongID like '100%' ";
             stm = conn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             int id = 0;
@@ -74,7 +75,7 @@ public class TuyenDuongService {
             else
                 id += 1;
             String sql2 = "INSERT INTO tuyenduong(TuyenDuongID, TuyenDuongName,FromTram,ToTRam,Distance,TuyenDuongTime,TuyenKhuHoiID)" 
-                    + "Values(?,?,?,?,?,?)";
+                    + "Values(?,?,?,?,?,?,?)";
             PreparedStatement stm2 = conn.prepareStatement(sql2);
             stm2.setInt(1, id);
             stm2.setString(2,t.getToTram().getName() + " to " + t.getFromTram().getName()+ "(" + id + ")");
@@ -82,16 +83,22 @@ public class TuyenDuongService {
             stm2.setInt(4, t.getFromTram().getTramID());
             stm2.setInt(5, t.getDistance());
             stm2.setTime(6, t.getTuyenDuongTime());
+            stm2.setInt(7, t.getTuyenDuongID());
             
-            if(stm2.executeUpdate() == 1){
+            //update id khu hoi
+            PreparedStatement stm3 =conn.prepareStatement
+                                ("UPDATE tuyenduong set TuyenKhuHoiID = ? Where TuyenDuongID = ?");
+            stm3.setInt(1,id);
+            stm3.setInt(2, t.getTuyenDuongID());
+     
+            if(stm2.executeUpdate() == 1 && stm3.executeUpdate() == 1){
                 conn.commit();
-                return id;
+                return true;
             }
-            else
-                return -1;
+            return false;
         }
-    }*/
-    public static boolean addTuyen(TuyenDuong tuyen, boolean auto) throws SQLException{
+    }
+    public static boolean addTuyen(TuyenDuong tuyen) throws SQLException{
         Connection conn = Utils.getConn();
         conn.setAutoCommit(false);
         String sql = "INSERT INTO tuyenduong(TuyenDuongID, TuyenDuongName,FromTram,ToTRam,Distance,TuyenDuongTime)"
@@ -108,13 +115,14 @@ public class TuyenDuongService {
             stm2.setInt(2, idkhuhoi);
         }*/
         stm.setInt(1, tuyen.getTuyenDuongID());
-        stm.setString(2, tuyen.getTuyenDuongName());
+        stm.setString(2, tuyen.getToTram().getName() + "-" + tuyen.getFromTram().getName());
         stm.setInt(3, tuyen.getFromTram().getTramID());
         stm.setInt(4, tuyen.getToTram().getTramID());
         stm.setInt(5, tuyen.getDistance());
         double t =(double) tuyen.getDistance() / 48;
-        int temp = (int) t; 
-        Time time = new Time((int)t, (int) ((t -temp) * 60), 0);
+        int temp = (int) t;
+        System.out.println(temp);
+        Time time = new Time(temp, (int) ((t -temp) * 60), 0);
         stm.setTime(6,time);
         if(stm.executeUpdate() == 1){
             /**if(auto == true && idkhuhoi != -1)
@@ -122,24 +130,30 @@ public class TuyenDuongService {
                  
                 }*/
             conn.commit();
-             return true;
+            return true;
         }
            return false;
         
     }
     public static boolean deleteTuyenDuong(String id) throws SQLException{
         Connection conn = Utils.getConn();
-        String sql = "DELETE FROM tuyenduong where TuyenDuongid = ?";
+        String sql = "DELETE FROM tuyenduong where TuyenDuongID = ?";
+        String sql2 = "DELETE FROM tuyenduong where TuyenKhuHoiID = ?";
+        PreparedStatement stm2 = conn.prepareStatement(sql2);
         PreparedStatement stm = conn.prepareStatement(sql);
         stm.setString(1, id);
+        stm2.setString(1, id);
         conn.setAutoCommit(false);
         if(stm.executeUpdate() == 1)
         {
             conn.commit();
+            if(stm2.executeUpdate() ==1)
+                conn.commit();
             return true;
         }
         return false;
     }
+    
      public static TuyenDuong getTuyenDuongByID(int id) throws SQLException{
         Connection conn = Utils.getConn();
         String sql = "Select * From tuyenduong WHERE TuyenDuongID = ?";

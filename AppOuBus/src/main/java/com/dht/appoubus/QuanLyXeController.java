@@ -108,7 +108,7 @@ public class QuanLyXeController implements Initializable {
             return cell;
         });
         TableColumn colTram = new TableColumn("Trạm xe đậu");
-        colTram.setCellValueFactory(new PropertyValueFactory("tramID"));
+        colTram.setCellValueFactory(new PropertyValueFactory("tram"));
         
         colID.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));
         colBienXo.prefWidthProperty().bind(tableXe.widthProperty().multiply(0.2));

@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="597.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyTuyenDuongController">
    <children>
-      <TableView fx:id="TableTuyenDuong" layoutX="2.0" layoutY="98.0" prefHeight="431.0" prefWidth="776.0" />
+      <TableView fx:id="TableTuyenDuong" layoutX="2.0" layoutY="98.0" prefHeight="417.0" prefWidth="776.0" />
       <Button layoutX="14.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#showAddTuyenDuong" prefHeight="56.0" prefWidth="163.0" style="-fx-background-color: #3CB371;" text="Add tuyến" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
@@ -35,7 +35,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="281.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#refreshHandler" prefHeight="56.0" prefWidth="142.0" style="-fx-background-color: #1E90FF;" text="Refresh" textFill="WHITE">
+      <Button layoutX="209.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#refreshHandler" prefHeight="56.0" prefWidth="142.0" style="-fx-background-color: #1E90FF;" text="Refresh" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -52,11 +52,12 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <TextField fx:id="txtFind" layoutX="3.0" layoutY="73.0" prefHeight="25.0" prefWidth="185.0" promptText="Tìm kiếm Theo name" />
-      <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="188.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="txtFind" layoutX="3.0" layoutY="61.0" prefHeight="14.0" prefWidth="182.0" promptText="Tìm kiếm Theo name" />
+      <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="185.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/magnifying-glass.png" />
          </image>
       </ImageView>
+      <Button layoutX="392.0" layoutY="529.0" mnemonicParsing="false" onMouseClicked="#taoKhuHoiHanler" prefHeight="56.0" prefWidth="103.0" text="Tạo khứ hồi" />
    </children>
 </AnchorPane>

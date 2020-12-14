@@ -4,71 +4,78 @@
  * and open the template in the editor.
  */
 package com.dht.appoubus;
-import com.dht.services.ChuyenXeService;
-import com.dht.services.Utils;
+
 import com.dht.pojo.ChuyenXe;
 import com.dht.pojo.TuyenDuong;
 import com.dht.pojo.Xe;
 import com.dht.services.ChuyenXeService;
-import static com.dht.services.TramService.addTram;
-import com.dht.services.TuyenDuongService;
-import com.dht.services.XeService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 /**
  * FXML Controller class
  *
  * @author Admin
  */
-public class QuanLyChuyenXeController implements Initializable {
-
+public class BanVeController implements Initializable {
+ 
+    /**
+     * Initializes the controller class.
+     */
+    @FXML Label txtXe;
+    @FXML Label txtChuyenXe;
+    @FXML Label txtFrom; 
+    @FXML Label txtTo;
+    @FXML Label txtTime;
+    @FXML Label txtDate;
+    @FXML Label txtSoVe;
+    @FXML Label txtDaBan;
+    @FXML Label txtGia;
     @FXML TableView <ChuyenXe> tableChuyenXe;
-    
     @FXML ChoiceBox <TuyenDuong> choiceTuyenDuong;
     @FXML DatePicker date;
-    @FXML ChoiceBox <Xe> choiceXe;
+    private static int chuyenID;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            // TODO
-            choiceTuyenDuong.setItems(FXCollections.observableArrayList(TuyenDuongService.getTuyenDuong("")));
-            choiceXe.setItems(FXCollections.observableArrayList(XeService.getXe("")));
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLyChuyenXeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // TODO
         loadChuyenXe();
         loadData("");
         
     }    
-    //create table view
-    public void loadChuyenXe(){
+    
+     public void loadChuyenXe(){
         TableColumn colID = new TableColumn("Chuyến Xe ID");
         colID.setCellValueFactory(new PropertyValueFactory("chuyenXeID"));
         
@@ -162,19 +169,25 @@ public class QuanLyChuyenXeController implements Initializable {
             Logger.getLogger(QuanLyChuyenXeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void loadData(Date date, int xeID, int TuyenDuongID) {
+    public void loadData(Date date, int TuyenDuongID) {
        
         try {
             tableChuyenXe.getItems().clear();
-            tableChuyenXe.setItems(FXCollections.observableArrayList(ChuyenXeService.getChuyenXe(date, xeID, TuyenDuongID)));
+            tableChuyenXe.setItems(FXCollections.observableArrayList(ChuyenXeService.getChuyenXe(date, TuyenDuongID)));
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyChuyenXeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void showAddChuyenXe() throws SQLException, IOException{
+     public void showDanhSachVe() throws SQLException, IOException{
         try {
-            AnchorPane addChuyenXe = FXMLLoader.load(getClass().getResource("AddChuyenXe.fxml"));
-            Scene scene = new Scene(addChuyenXe);
+            if(this.chuyenID == 0){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Chưa chọn chuyến");
+                alert.show();
+            }
+            else{
+            AnchorPane danhSachVe = FXMLLoader.load(getClass().getResource("DanhSachVe.fxml"));
+            Scene scene = new Scene(danhSachVe);
         
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setTitle("Chức năng tạo chuyến xe theo time");
@@ -182,54 +195,59 @@ public class QuanLyChuyenXeController implements Initializable {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.showAndWait();
             loadData("");
+            }
         } catch (IOException ex) {
             Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+     
+    //Load Chi tiet
+     public void loadChiTiet(ChuyenXe cx){
+         txtChuyenXe.setText(String.valueOf(cx.getChuyenXeID()));
+         txtXe.setText(cx.getXe().toString());
+         txtFrom.setText(cx.getTuyenDuong().getToTram().toString());
+         txtTo.setText(cx.getTuyenDuong().getFromTram().toString());
+         txtDaBan.setText(String.valueOf(ChuyenXeService.soVeDaBan(cx.getChuyenXeID())));
+         SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+         String date = f.format(cx.getDate());
+         String time = cx.getBeginTime().toString();
+         txtDate.setText(date);
+         txtTime.setText(cx.getBeginTime().getHours() + ":" + cx.getBeginTime().getMinutes() + ":00");
+         txtSoVe.setText(String.valueOf(cx.getSoVe()));
+         this.chuyenID = cx.getChuyenXeID();
+     }
+     
+    public void clickItem(MouseEvent event)
+    {
+        if(event.getClickCount() == 2){
+            ChuyenXe cx = (ChuyenXe)tableChuyenXe.getSelectionModel().getSelectedItem();
+            loadChiTiet(cx);
+        }
+    }
+
+    public static void setChuyenID(int soGhe) {
+        BanVeController.chuyenID = soGhe;
+    }
+
+    public static int getChuyenID() {
+        return chuyenID;
+    }
     public void findHanler(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Tìm theo lựa chọn");
         alert.showAndWait().ifPresent(new Consumer<ButtonType>() {
             @Override
             public void accept(ButtonType action) {
-                if(date.getValue()==null || choiceTuyenDuong.getValue()==null || choiceXe.getValue() ==null){
+                if(date.getValue()==null || choiceTuyenDuong.getValue()==null){
                     alert.setContentText("Nhập thiếu dữ kiện");
                 }
                 else{
                     
-                    loadData(Date.valueOf(date.getValue()), choiceTuyenDuong.getValue().getTuyenDuongID(), choiceXe.getValue().getXeID());
+                    loadData(Date.valueOf(date.getValue()), choiceTuyenDuong.getValue().getTuyenDuongID());
                     }
             }
         });
     }
-
-    /**
-     *
-     */
-    public void refreshHanler(){
-        
-        loadData("");
-    }
-    public void deleteChuyenXeHandler(){
-        ChuyenXe selected = (ChuyenXe) tableChuyenXe.getSelectionModel().getSelectedItem();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        int id =selected.getChuyenXeID();
-        alert.setContentText("Bạn chắc chắn xóa Tuyến đường: TuyenDuongId = " + id + "?");
-        alert.showAndWait().ifPresent(res -> {
-            try {
-                
-                if(ChuyenXeService.deleteChuyenXe(id) == true){
-                    alert.setContentText("Đã xóa thành công");
-                    loadData("");
-                }
-                else
-                    alert.setContentText("Xóa thất bại?Dữ liệu tuyến đường có thể đang được dùng");
-            } catch (SQLException ex) {
-                Logger.getLogger(QuanLyTuyenDuongController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            alert.show();
-        });
-        }
    
+    
 }

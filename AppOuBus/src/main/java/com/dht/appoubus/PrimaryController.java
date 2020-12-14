@@ -85,4 +85,11 @@ public class PrimaryController {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void loadBanVe(){
+        try {
+            loadUI("BanVe.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
