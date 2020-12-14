@@ -137,11 +137,12 @@ public class DanhSachVeController implements Initializable {
         VeXe v = new VeXe(ChuyenXeService.getChuyenByID(chuyenID), txtphone.getText(), 
                 Time.valueOf(LocalTime.now()), txtKhachHang.getText(), Integer.parseInt(txtSoGhe.getText()));
         if(VeXeService.kiemTraDat(Integer.parseInt(txtSoGhe.getText()), chuyenID) == true &&
-                Utils.checkTime(ChuyenXeService.getChuyenByID(chuyenID).getBeginTime(), ChuyenXeService.getChuyenByID(chuyenID).getDate())==true)
+           Utils.checkTime(ChuyenXeService.getChuyenByID(chuyenID).getBeginTime(), ChuyenXeService.getChuyenByID(chuyenID).getDate()) == true){
             if(VeXeService.addVeXe(v)){
             alert.setContentText("Mua vé thành công");
             loadBox();
             }
+        }
         else
             alert.setContentText("Vé đã mua rồi");
         alert.show();

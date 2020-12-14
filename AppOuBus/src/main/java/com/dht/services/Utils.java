@@ -63,16 +63,16 @@ public class Utils {
         if(checkDay > 0)
             return true;
         else 
-            if(checkDay < 0)
-                return false;
-            else{
-                long t1 = getTime(t);
+            if(checkDay == 0){
+                                long t1 = getTime(t);
                 long t2 = getTime(Time.valueOf(LocalTime.now()));
                 if(t1 > t2)
                     return true;
+                else return false;
+            }
+            else{
                 return false;
             }
-            
         
     }
 
