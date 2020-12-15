@@ -139,4 +139,9 @@ public class ChuyenXe {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return chuyenXeID + "."+this.tuyenDuong +"("+ beginTime + ")";
+    }
+
 }

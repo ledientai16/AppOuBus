@@ -35,7 +35,7 @@ CREATE TABLE `chuyenxe` (
   KEY `fk_chuyenxe_id_tuyenduong_idx` (`TuyenDuongID`),
   CONSTRAINT `fk_chuyenxe_id_tuyenduong` FOREIGN KEY (`TuyenDuongID`) REFERENCES `tuyenduong` (`TuyenDuongID`),
   CONSTRAINT `fk_chuyenxe_id_xe` FOREIGN KEY (`XeID`) REFERENCES `xe` (`XeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `chuyenxe` (
 
 LOCK TABLES `chuyenxe` WRITE;
 /*!40000 ALTER TABLE `chuyenxe` DISABLE KEYS */;
-INSERT INTO `chuyenxe` VALUES (60,'03:00:00',1,100000,1,'2020-12-14',39),(61,'05:30:00',1,100000,1001,'2020-12-14',39),(62,'08:00:00',1,100000,1,'2020-12-14',39),(63,'10:30:00',1,100000,1001,'2020-12-14',39),(64,'13:00:00',1,100000,1,'2020-12-14',39),(65,'20:30:00',1,100000,1001,'2020-12-14',39);
+INSERT INTO `chuyenxe` VALUES (60,'03:00:00',1,100000,1,'2020-12-14',39),(61,'05:30:00',1,100000,1001,'2020-12-14',39),(62,'08:00:00',1,100000,1,'2020-12-14',39),(63,'10:30:00',1,100000,1001,'2020-12-14',39),(65,'22:30:00',1,100000,1001,'2020-12-14',39),(66,'03:00:00',2,150000,1001,'2020-12-15',39),(67,'05:30:00',2,150000,1,'2020-12-15',39),(68,'08:00:00',2,150000,1001,'2020-12-15',39),(69,'10:30:00',2,150000,1,'2020-12-15',39),(70,'13:00:00',2,150000,1001,'2020-12-15',39),(71,'15:30:00',2,150000,1,'2020-12-15',39),(72,'03:00:00',3,100000,1,'2020-12-16',39),(73,'05:30:00',3,100000,1001,'2020-12-16',39),(74,'08:00:00',3,100000,1,'2020-12-16',39),(76,'13:00:00',3,100000,1,'2020-12-16',39),(77,'15:30:00',3,100000,1001,'2020-12-16',39),(78,'03:00:00',1,900000,1,'2020-12-24',39),(79,'05:30:00',1,900000,1001,'2020-12-24',39),(80,'08:00:00',1,900000,1,'2020-12-24',39),(81,'10:30:00',1,900000,1001,'2020-12-24',39),(82,'13:00:00',1,900000,1,'2020-12-24',39),(83,'15:30:00',1,900000,1001,'2020-12-24',39);
 /*!40000 ALTER TABLE `chuyenxe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,6 +68,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (1,'Lê Điền Tài');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +153,7 @@ CREATE TABLE `tuyenduong` (
 
 LOCK TABLES `tuyenduong` WRITE;
 /*!40000 ALTER TABLE `tuyenduong` DISABLE KEYS */;
-INSERT INTO `tuyenduong` VALUES (1,'Tân Châu-An Sương',1,2,120,'01:30:00',1001),(1001,'Tân Châu to An Sương(1001)',2,1,120,'01:30:00',1);
+INSERT INTO `tuyenduong` VALUES (1,'Tân Châu-An Sương',1,2,120,'01:30:00',1001),(12,'Đồng tháp to cà Mau',3,4,120,'01:30:00',NULL),(15,'Tân Châu-An Sương',1,2,120,'01:30:00',1002),(1001,'Tân Châu to An Sương(1001)',2,1,120,'01:30:00',1),(1002,'Tân Châu to An Sương(1002)',2,1,120,'01:30:00',15);
 /*!40000 ALTER TABLE `tuyenduong` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,10 +171,11 @@ CREATE TABLE `vexe` (
   `GioDat` time DEFAULT NULL,
   `KhachHangName` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `phone` varchar(45) DEFAULT NULL,
+  `VeDat` tinyint DEFAULT NULL,
   PRIMARY KEY (`VeXeID`),
   KEY `fk_vexe_id_chuyenxe_idx` (`ChuyenXeID`) /*!80000 INVISIBLE */,
   CONSTRAINT `fk_vexe_id_chuyenxe` FOREIGN KEY (`ChuyenXeID`) REFERENCES `chuyenxe` (`ChuyenXeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +184,7 @@ CREATE TABLE `vexe` (
 
 LOCK TABLES `vexe` WRITE;
 /*!40000 ALTER TABLE `vexe` DISABLE KEYS */;
-INSERT INTO `vexe` VALUES (1,61,14,'16:19:44','',''),(2,62,20,'17:12:30','',''),(3,62,29,'17:12:33','',''),(4,62,25,'17:12:34','',''),(5,61,20,'17:14:26','',''),(6,61,14,'17:14:29','',''),(7,60,20,'17:19:55','',''),(8,60,10,'17:20:00','',''),(9,61,24,'17:41:03','',''),(10,61,24,'17:42:57','',''),(11,61,29,'17:43:02','','');
+INSERT INTO `vexe` VALUES (35,70,29,'22:36:49','','',NULL),(36,71,29,'23:00:29','','',0),(37,71,38,'23:00:36','','',1),(39,71,35,'09:44:34','','',0),(40,70,34,'09:44:42','','',0),(41,69,38,'09:44:48','','',0),(42,71,34,'09:45:04','','',1),(44,70,35,'09:50:14','','',0),(45,70,24,'09:50:21','','',0),(46,70,19,'09:50:24','','',0),(47,70,25,'10:44:42','','',0),(49,71,30,'13:31:47','','',1),(50,71,20,'13:31:49','','',0),(51,76,1,'13:36:56','','',1),(52,72,34,'13:39:29','','',1),(53,72,23,'13:39:32','','',0),(54,74,20,'13:42:11','','',0),(55,72,3,'13:42:29','','',1),(56,76,8,'14:01:02','','',1),(58,72,8,'14:21:38','','',1),(59,74,15,'14:24:36','','',0),(60,72,15,'14:26:09','','',1),(62,77,8,'14:28:41','','',1),(63,71,33,'03:01:00','ba den','0192',1),(64,71,33,'03:01:00','ba den','0192',1),(65,71,33,'03:01:00','ba den','0192',1),(68,74,24,'15:24:42','','',1),(69,74,34,'15:26:12','','',0),(70,74,27,'15:26:15','','',1);
 /*!40000 ALTER TABLE `vexe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +214,7 @@ CREATE TABLE `xe` (
 
 LOCK TABLES `xe` WRITE;
 /*!40000 ALTER TABLE `xe` DISABLE KEYS */;
-INSERT INTO `xe` VALUES (1,'70k-9999',40,'HondaToYETa','2017-11-26',1),(2,'59e-7777',40,'MercedeVinfast','1970-01-01',1),(3,'99k2-6666',40,'exiyeter','2020-12-01',3),(4,'87-1234',40,'djsoda','1970-01-01',4);
+INSERT INTO `xe` VALUES (1,'70k-9999',40,'HondaToYETa','2017-11-26',1),(2,'59e-7777',40,'MercedeVinfast','1970-01-01',1),(3,'99k2-6666',40,'exiyeter','2020-12-01',3),(4,'87-1234',40,'djsoda','1970-01-01',4),(5,'49-3993',40,'Formosa','2020-12-01',1),(19,'kwo',40,'toyota','3920-02-01',3);
 /*!40000 ALTER TABLE `xe` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -225,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-14 18:53:44
+-- Dump completed on 2020-12-15 16:53:24

@@ -6,15 +6,21 @@
 package com.dht.appoubus;
 
 import com.dht.pojo.ChuyenXe;
+import com.dht.pojo.Employee;
+import com.dht.pojo.Tram;
 import com.dht.pojo.TuyenDuong;
 import com.dht.pojo.Xe;
 import com.dht.services.ChuyenXeService;
+import com.dht.services.EmployeeService;
+import com.dht.services.TramService;
+import com.dht.services.XeService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -64,14 +70,25 @@ public class BanVeController implements Initializable {
     @FXML Label txtDaBan;
     @FXML Label txtGia;
     @FXML TableView <ChuyenXe> tableChuyenXe;
-    @FXML ChoiceBox <TuyenDuong> choiceTuyenDuong;
+    @FXML ChoiceBox <Tram> choiceTram;
+    @FXML ChoiceBox <Employee> choiceEmployee;
     @FXML DatePicker date;
     private static int chuyenID;
+    private static int tramID;
+    private static Date ngayChay;
+    private static Employee nhanVien;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            
+            // TODO
+            choiceEmployee.setItems(FXCollections.observableArrayList(EmployeeService.getEmployee()));
+            choiceTram.setItems(FXCollections.observableArrayList(TramService.getTram("")));
+        } catch (SQLException ex) {
+            Logger.getLogger(BanVeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         loadChuyenXe();
-        loadData("");
+        
         
     }    
     
@@ -157,7 +174,17 @@ public class BanVeController implements Initializable {
         });
         TableColumn colSoVe = new TableColumn("Lượng Vé");
         colSoVe.setCellValueFactory(new PropertyValueFactory("soVe"));
-        tableChuyenXe.getColumns().addAll(colID,colXe,colTime,colDate,colSoVe,colTuyenDuong);
+        TableColumn colGia = new TableColumn("Giá");
+        colGia.setCellValueFactory(new PropertyValueFactory("giaTien"));
+        
+        colID.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        colXe.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.2));
+        colTuyenDuong.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.3));
+        colDate.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        colTime.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        colSoVe.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        colGia.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        tableChuyenXe.getColumns().addAll(colID,colXe,colTime,colDate,colSoVe,colGia,colTuyenDuong);
     }
     //fuction load data to TableChuyenXe from DB
     public void loadData(String kw) {
@@ -169,11 +196,13 @@ public class BanVeController implements Initializable {
             Logger.getLogger(QuanLyChuyenXeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void loadData(Date date, int TuyenDuongID) {
+    public void loadData(Date date, int tramID) {
        
         try {
+            
+            
             tableChuyenXe.getItems().clear();
-            tableChuyenXe.setItems(FXCollections.observableArrayList(ChuyenXeService.getChuyenXe(date, TuyenDuongID)));
+            tableChuyenXe.setItems(FXCollections.observableArrayList(ChuyenXeService.getChuyenXe(date,tramID)));
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyChuyenXeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -188,13 +217,13 @@ public class BanVeController implements Initializable {
             else{
             AnchorPane danhSachVe = FXMLLoader.load(getClass().getResource("DanhSachVe.fxml"));
             Scene scene = new Scene(danhSachVe);
-        
+            
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setTitle("Chức năng tạo chuyến xe theo time");
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.showAndWait();
-            loadData("");
+            
             }
         } catch (IOException ex) {
             Logger.getLogger(QuanLyTramController.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,9 +242,14 @@ public class BanVeController implements Initializable {
          String time = cx.getBeginTime().toString();
          txtDate.setText(date);
          txtTime.setText(cx.getBeginTime().getHours() + ":" + cx.getBeginTime().getMinutes() + ":00");
+         txtGia.setText(String.valueOf(cx.getGiaTien()));
          txtSoVe.setText(String.valueOf(cx.getSoVe()));
          this.chuyenID = cx.getChuyenXeID();
      }
+
+    public static Employee getNhanVien() {
+        return nhanVien;
+    }
      
     public void clickItem(MouseEvent event)
     {
@@ -238,15 +272,42 @@ public class BanVeController implements Initializable {
         alert.showAndWait().ifPresent(new Consumer<ButtonType>() {
             @Override
             public void accept(ButtonType action) {
-                if(date.getValue()==null || choiceTuyenDuong.getValue()==null){
+                if(date.getValue()==null || choiceTram.getValue()==null|| choiceEmployee.getValue() == null){
+                    alert.setContentText("Nhập thiếu dữ kiện");
+                
+                }
+                else{
+                    tramID = choiceTram.getValue().getTramID();
+                    ngayChay = Date.valueOf(date.getValue());
+                    nhanVien = choiceEmployee.getValue();
+                    loadData(Date.valueOf(date.getValue()), choiceTram.getValue().getTramID());
+                    }
+            }
+        });
+    }
+    public void nhanVeHandler(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Tìm theo lựa chọn");
+        alert.showAndWait().ifPresent(new Consumer<ButtonType>() {
+            @Override
+            public void accept(ButtonType action) {
+                if(date.getValue()==null || choiceTram.getValue()==null){
                     alert.setContentText("Nhập thiếu dữ kiện");
                 }
                 else{
                     
-                    loadData(Date.valueOf(date.getValue()), choiceTuyenDuong.getValue().getTuyenDuongID());
+                    loadData(Date.valueOf(date.getValue()), choiceTram.getValue().getTramID());
                     }
             }
         });
+    }
+
+    public static int getTramID() {
+        return tramID;
+    }
+
+    public static Date getNgayChay() {
+        return ngayChay;
     }
    
     

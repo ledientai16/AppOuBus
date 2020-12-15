@@ -176,4 +176,27 @@ public class TuyenDuongService {
         }
         return null;
     }
+    public static List<TuyenDuong> getTuyenDuongByFromTram(int tramID) throws SQLException{
+        Connection conn = Utils.getConn();
+        String sql = "Select * From tuyenduong WHERE FromTram = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        stm.setInt(1,tramID);
+        ResultSet rs = stm.executeQuery();
+        List <TuyenDuong> tuyen = new ArrayList<>();
+        while(rs.next()){  
+            int i = rs.getInt("TuyenDuongID");
+            String name = rs.getString("TuyenDuongName");
+            int distance = rs.getInt("Distance");
+            Time tuyenDuongTime = rs.getTime("TuyenDuongTime");
+            int fromTramID = rs.getInt("FromTram");
+            int toTramID = rs.getInt("ToTram");
+            int tuyenkhuHoiID = rs.getInt("TuyenKhuHoiID");
+            Tram fromTram = TramService.getTramByID(fromTramID);
+            Tram toTram = TramService.getTramByID(toTramID);
+            
+            TuyenDuong td = new TuyenDuong(i, name, distance, tuyenDuongTime, fromTram, toTram,tuyenkhuHoiID);
+            tuyen.add(td);
+        }
+        return tuyen;
+    }
 }

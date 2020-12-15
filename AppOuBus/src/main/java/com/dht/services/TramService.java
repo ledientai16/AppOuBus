@@ -68,10 +68,11 @@ public class TramService {
             conn.setAutoCommit(false);
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, tramID);
-            int kq = stm.executeUpdate();
-            stm.executeUpdate();
-            conn.commit();
-            return kq >0;
+            if(stm.executeUpdate() == 1);
+            {
+             conn.commit();
+             return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(TramService.class.getName()).log(Level.SEVERE, null, ex);
         }

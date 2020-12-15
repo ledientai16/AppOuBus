@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyXeController">
+<AnchorPane id="AnchorPane" prefHeight="663.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyXeController">
    <children>
-      <TableView fx:id="tableXe" layoutX="6.0" layoutY="94.0" prefHeight="380.0" prefWidth="843.0" />
-      <Label alignment="CENTER" layoutY="-5.0" prefHeight="65.0" prefWidth="849.0" style="-fx-background-color: #606060;" text="QUẢN LÝ XE" textFill="WHITE">
+      <TableView fx:id="tableXe" layoutX="6.0" layoutY="94.0" prefHeight="496.0" prefWidth="900.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="94.0" />
+      <Label alignment="CENTER" layoutY="3.0" prefHeight="57.0" prefWidth="907.0" style="-fx-background-color: #606060;" text="QUẢN LÝ XE" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0">
          <font>
             <Font name="System Bold" size="39.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="494.0" mnemonicParsing="false" onMouseClicked="#showAddXe" prefHeight="57.0" prefWidth="172.0" style="-fx-background-color: #32CD32;" text="Thêm Xe" textFill="WHITE">
+      <Button layoutX="34.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#showAddXe" prefHeight="57.0" prefWidth="172.0" style="-fx-background-color: #32CD32;" text="Thêm Xe" textFill="WHITE" AnchorPane.bottomAnchor="14.666666666666664">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -29,7 +29,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="234.0" layoutY="494.0" mnemonicParsing="false" onMouseClicked="#refreshTableHandler" prefHeight="57.0" prefWidth="147.0" style="-fx-background-color: #40E0D0;" text="Refresh" textFill="WHITE">
+      <Button layoutX="248.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#refreshTableHandler" prefHeight="57.0" prefWidth="147.0" style="-fx-background-color: #40E0D0;" text="Refresh" textFill="WHITE" AnchorPane.bottomAnchor="14.666666666666664">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -41,7 +41,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="552.0" layoutY="494.0" mnemonicParsing="false" onMouseClicked="#deleteXeHandler" prefHeight="57.0" prefWidth="147.0" style="-fx-background-color: #FF0000;" text="Delete" textFill="WHITE">
+      <Button layoutX="634.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#deleteXeHandler" prefHeight="57.0" prefWidth="147.0" style="-fx-background-color: #FF0000;" text="Delete" textFill="WHITE" AnchorPane.bottomAnchor="14.666666666666664">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

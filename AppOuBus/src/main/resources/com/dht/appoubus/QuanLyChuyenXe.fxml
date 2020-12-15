@@ -10,15 +10,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="765.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyChuyenXeController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="907.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dht.appoubus.QuanLyChuyenXeController">
    <children>
-      <TableView fx:id="tableChuyenXe" layoutY="114.0" prefHeight="394.0" prefWidth="765.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-7.0" prefHeight="69.0" prefWidth="684.0" style="-fx-background-color: #606060;" text="Quản lý Chuyến xe" textFill="WHITE">
+      <TableView fx:id="tableChuyenXe" layoutY="114.0" prefHeight="477.0" prefWidth="907.0" AnchorPane.bottomAnchor="71.66666666666669" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.33333333333337123" AnchorPane.topAnchor="114.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-7.0" layoutY="-2.0" prefHeight="71.0" prefWidth="917.0" style="-fx-background-color: #606060;" text="Quản lý Chuyến xe" textFill="WHITE" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
          <font>
             <Font name="System Bold" size="47.0" />
          </font>
       </Label>
-      <Button layoutX="480.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#deleteChuyenXeHandler" style="-fx-background-color: red;" text="Xóa" textFill="WHITE">
+      <Button layoutX="680.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#deleteChuyenXeHandler" style="-fx-background-color: red;" text="Xóa" textFill="WHITE" AnchorPane.bottomAnchor="12.666666666666664">
          <graphic>
             <ImageView fitHeight="78.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -29,7 +29,7 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-      <Button layoutX="97.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#showAddChuyenXe" prefHeight="59.0" prefWidth="143.0" style="-fx-background-color: #3CB371;" text="Thêm" textFill="WHITE">
+      <Button layoutX="74.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#showAddChuyenXe" prefHeight="59.0" prefWidth="143.0" style="-fx-background-color: #3CB371;" text="Thêm" textFill="WHITE" AnchorPane.bottomAnchor="12.666666666666664">
          <graphic>
             <ImageView fitHeight="48.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +44,7 @@
       <ChoiceBox fx:id="choiceTuyenDuong" layoutX="194.0" layoutY="86.0" prefHeight="25.0" prefWidth="159.0" />
       <ChoiceBox fx:id="choiceXe" layoutX="375.0" layoutY="86.0" prefWidth="150.0" />
       <Button layoutX="541.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#findHanler" prefHeight="25.0" prefWidth="52.0" text="find" />
-      <Button layoutX="327.0" layoutY="541.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="142.0" style="-fx-background-color: #1E90FF;" text="Refresh" textFill="WHITE">
+      <Button layoutX="344.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#refreshHanler" prefHeight="56.0" prefWidth="142.0" style="-fx-background-color: #1E90FF;" text="Refresh" textFill="WHITE" AnchorPane.bottomAnchor="12.666666666666664">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

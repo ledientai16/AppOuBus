@@ -150,7 +150,17 @@ public class QuanLyChuyenXeController implements Initializable {
         });
         TableColumn colSoVe = new TableColumn("Lượng Vé");
         colSoVe.setCellValueFactory(new PropertyValueFactory("soVe"));
-        tableChuyenXe.getColumns().addAll(colID,colXe,colTime,colDate,colSoVe,colTuyenDuong);
+        TableColumn colGia = new TableColumn("Giá");
+        colGia.setCellValueFactory(new PropertyValueFactory("giaTien"));
+        
+        colID.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        colXe.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.2));
+        colTuyenDuong.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.3));
+        colDate.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        colTime.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        colSoVe.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        colGia.prefWidthProperty().bind(tableChuyenXe.widthProperty().multiply(0.1));
+        tableChuyenXe.getColumns().addAll(colID,colXe,colTime,colDate,colSoVe,colGia,colTuyenDuong);
     }
     //fuction load data to TableChuyenXe from DB
     public void loadData(String kw) {
@@ -198,7 +208,7 @@ public class QuanLyChuyenXeController implements Initializable {
                 }
                 else{
                     
-                    loadData(Date.valueOf(date.getValue()), choiceTuyenDuong.getValue().getTuyenDuongID(), choiceXe.getValue().getXeID());
+                    loadData(Date.valueOf(date.getValue()), choiceXe.getValue().getXeID(), choiceTuyenDuong.getValue().getTuyenDuongID());
                     }
             }
         });

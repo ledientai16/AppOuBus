@@ -74,16 +74,16 @@ public class ChuyenXeService {
         }
         return listChuyenXe;
     }
-    public static List<ChuyenXe> getChuyenXe(Date d, int tuyenDuongID) throws SQLException{
+    public static List<ChuyenXe> getChuyenXe(Date d, int tram) throws SQLException{
         //connection db
         Connection conn = Utils.getConn();
-        String sql = "SELECT * FROM chuyenxe Where NgayKhoiHanh = ?AND TuyenDuongID = ?";
+        String sql = "SELECT chuyenxe.ChuyenXeID, chuyenxe.TuyenDuongID,chuyenxe.XeID,chuyenxe.NgayKhoiHanh,chuyenxe.BeginTime,chuyenxe.GiaTien,chuyenxe.SoVe "
+                + " FROM chuyenxe, tuyenduong,tram Where chuyenxe.TuyenDuongID = tuyenduong.TuyenDuongID AND tuyenduong.FromTram = tram.TramID ANd tram.TramID = ? AND chuyenxe.NgayKhoiHanh = ?";
         //excute query
         PreparedStatement stm = conn.prepareStatement(sql);
-        stm.setDate(1,d);
-        stm.setInt(2, tuyenDuongID);
+        stm.setDate(2,d);
+        stm.setInt(1, tram);
         ResultSet rs = stm.executeQuery();
-        
         List <ChuyenXe> listChuyenXe = new ArrayList<>();
         while(rs.next()){
             int chuyenXeID = rs.getInt("ChuyenXeID");
@@ -101,7 +101,6 @@ public class ChuyenXeService {
         return listChuyenXe;
     }
     //kiem tra xem xe da co tuyen trong ngay chua
-    
     public static int CheckChuyenXe(int xeID,Date date) throws SQLException{
         Connection conn = Utils.getConn();
         String sql = "Select * from chuyenXe WHERE XeID = ? AND NgayKhoiHanh = ?";
@@ -166,7 +165,7 @@ public class ChuyenXeService {
     public static int soVeDaBan(int i){
         Connection conn = Utils.getConn();
         String sql = "Select Count(ChuyenXeID) from vexe where ChuyenXeID = ?";
-       
+        
         PreparedStatement stm;
         try {
             int count = 0;

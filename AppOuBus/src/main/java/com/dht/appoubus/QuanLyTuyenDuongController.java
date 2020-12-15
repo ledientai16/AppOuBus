@@ -66,7 +66,7 @@ public class QuanLyTuyenDuongController implements Initializable {
         });
     }    
     public void loadTuyenDuong(){
-        TableColumn colID = new TableColumn("Tuyến Đường ID");
+        TableColumn colID = new TableColumn("ID");
         colID.setCellValueFactory(new PropertyValueFactory("tuyenDuongID"));
         
         TableColumn colName = new TableColumn("Tên tuyến đường");
@@ -128,9 +128,16 @@ public class QuanLyTuyenDuongController implements Initializable {
             };
             return cell;
         });
-        TableColumn colKhuHoi = new TableColumn("Mã tuyến khứ hồi");
+        TableColumn colKhuHoi = new TableColumn("khứ hồi");
         colKhuHoi.setCellValueFactory(new PropertyValueFactory("tuyenKhuHoiID"));
         
+        colID.prefWidthProperty().bind(TableTuyenDuong.widthProperty().multiply(0.1));
+        colName.prefWidthProperty().bind(TableTuyenDuong.widthProperty().multiply(0.2));
+        colFromTram.prefWidthProperty().bind(TableTuyenDuong.widthProperty().multiply(0.2));
+        colToTram.prefWidthProperty().bind(TableTuyenDuong.widthProperty().multiply(0.2));
+        colTime.prefWidthProperty().bind(TableTuyenDuong.widthProperty().multiply(0.1));
+        colDistance.prefWidthProperty().bind(TableTuyenDuong.widthProperty().multiply(0.1));
+        colKhuHoi.prefWidthProperty().bind(TableTuyenDuong.widthProperty().multiply(0.1));
         TableTuyenDuong.getColumns().addAll(colID,colName,colFromTram,colToTram,colTime,colDistance,colKhuHoi);
     }
     public void loadData(String kw) throws SQLException{

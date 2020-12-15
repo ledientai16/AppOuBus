@@ -42,41 +42,12 @@ public class Utils {
     }
      public static Connection getConn() {
         return conn;
-    }
-    public static List<Integer> getListHour(){
-         List <Integer> hours = new ArrayList<Integer>();
-         for(int i = 1; i <= 24; i++){
-             hours.add(i);
-         }
-         return hours;
      }
-    public static List<Integer> getListMinutes(){
-         List <Integer> minutes = new ArrayList<Integer>();
-         for(int i = 0; i <= 60 ; i++){
-             minutes.add(i);
-         }
-         return minutes;
-     }
-    public static boolean checkTime(Time t, Date d){
-     
-       int checkDay = d.compareTo(Date.valueOf(LocalDate.now()));
-        if(checkDay > 0)
-            return true;
-        else 
-            if(checkDay == 0){
-                                long t1 = getTime(t);
-                long t2 = getTime(Time.valueOf(LocalTime.now()));
-                if(t1 > t2)
-                    return true;
-                else return false;
-            }
-            else{
-                return false;
-            }
+    
+    
         
-    }
-
-    private static long getTime(Time t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
+
+    
+   
+

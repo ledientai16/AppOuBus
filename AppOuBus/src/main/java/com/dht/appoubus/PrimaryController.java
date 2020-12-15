@@ -21,7 +21,7 @@ public class PrimaryController {
     
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       
+      
     }   
     
     /**

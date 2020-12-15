@@ -18,20 +18,36 @@ public class VeXe extends ChuyenXe {
     private Time GioDat;
     private String KhachHangName;
     private int soGhe;
-
+    
+    //1 là đặt 0 là vé mua
+    
+    private int veDat;
     /**
+     * @param VeXeID
      * @return the VeXeID
      */
     
     
-    public VeXe(int VeXeID, ChuyenXe chuyenXe, String phone, Time GioDat, String KhachHangName, int soGhe) {
+    public VeXe(int VeXeID, ChuyenXe chuyenXe, String phone, Time GioDat, String KhachHangName, int soGhe,int veDat) {
         this.VeXeID = VeXeID;
         this.chuyenXe = chuyenXe;
         this.phone = phone;
         this.GioDat = GioDat;
         this.KhachHangName = KhachHangName;
         this.soGhe = soGhe;
+        this.veDat = veDat;
     }
+
+    public VeXe(ChuyenXe chuyenXe, String phone, Time GioDat, String KhachHangName, int soGhe, int veDat) {
+       
+        this.chuyenXe = chuyenXe;
+        this.phone = phone;
+        this.GioDat = GioDat;
+        this.KhachHangName = KhachHangName;
+        this.soGhe = soGhe;
+        this.veDat = veDat;
+    }
+    
     public VeXe( ChuyenXe chuyenXe, String phone, Time GioDat, String KhachHangName, int soGhe) {
        
         this.chuyenXe = chuyenXe;
@@ -119,6 +135,14 @@ public class VeXe extends ChuyenXe {
      */
     public void setSoGhe(int soGhe) {
         this.soGhe = soGhe;
+    }
+
+    public int getVeDat() {
+        return veDat;
+    }
+
+    public void setVeDat(int veDat) {
+        this.veDat = veDat;
     }
     
 }

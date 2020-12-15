@@ -59,6 +59,14 @@ public class AddChuyenXeController implements Initializable {
      
       
         try {
+            
+            txtGia.textProperty().addListener(new ChangeListener<String>(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+                if(!newValue.matches("\\d{0,10}"))
+                    txtGia.setText(oldValue);
+            }
+            });
             choiceKhungGio.setItems(FXCollections.observableArrayList(KhungGioService.getKhungGio()));
             choiceXe.setItems(FXCollections.observableArrayList(XeService.getXe("")));
             choiceTuyenDuong.setItems(FXCollections.observableArrayList(TuyenDuongService.getTuyenDuong("")));
@@ -82,7 +90,7 @@ public class AddChuyenXeController implements Initializable {
             try {
                 if(choiceTuyenDuong.getValue().getTuyenKhuHoiID() == 0)
                     alert.setContentText("Tuyến này chưa có khứ hồi");
-                else if(begin != null && end != null&& ChuyenXeService.CheckChuyenXe(choiceXe.getValue().getXeID(), d) == 0)
+                else if(begin != null && end != null&& ChuyenXeService.CheckChuyenXe(choiceXe.getValue().getXeID(), d) == 0&& txtGia.getText().equals("") )
                 {
                     for(int i = 0; i < list.size(); i++){
                         ChuyenXe cx;
@@ -99,6 +107,7 @@ public class AddChuyenXeController implements Initializable {
                 }   
                 else alert.setContentText("Lỗi nhập thiếu");
             } catch (SQLException ex) {
+                alert.setContentText("Xe này đã có tuyến đường ngày này");
                 Logger.getLogger(AddChuyenXeController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });

@@ -18,7 +18,7 @@ import java.util.List;
  * @author Admin
  */
 public class EmployeeService {
-    public static List<Employee> getTram() throws SQLException{
+    public static List<Employee> getEmployee() throws SQLException{
         Connection conn = Utils.getConn();
         String sql = "Select * From employee";
         
